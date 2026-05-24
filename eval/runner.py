@@ -18,6 +18,7 @@ import yaml
 from .dataset import cargar_escenario, DATASETS_DIR
 from .targets.generic_target import GenericTarget
 from .targets.lightrag import LightRAGTarget
+from .targets.ragflow import RAGFlowTarget
 from .reporters.console import mostrar_resultados, mostrar_resumen
 from .reporters.langfuse_reporter import LangFuseReporter
 from .metrics import evaluar_respuesta_ragas
@@ -60,6 +61,12 @@ def crear_targets(cfg: dict, filtro: list[str] | None = None) -> list:
             t = LightRAGTarget(
                 base_url=tcfg["base_url"],
                 modes=tcfg["modes"],
+            )
+        elif key == "ragflow":
+            t = RAGFlowTarget(
+                base_url=tcfg["base_url"],
+                modes=tcfg["modes"],
+                api_key=tcfg.get("api_key", ""),
             )
         else:
             t = GenericTarget(

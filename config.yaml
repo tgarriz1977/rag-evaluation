@@ -60,3 +60,11 @@ targets:
     ingest_endpoint: "/ingest"
     reindex_endpoint: null  # MS GraphRAG requiere index manual por CLI
     query_endpoint: "/query"
+
+  ragflow:
+    name: "RAGFlow"
+    base_url: "https://ragflow.test.arba.gov.ar"
+    api_key: ""               # Completar con API key de RAGFlow
+    modes:
+      - chat
+    # Usa target especial (ragflow.py) — no endpoints simples

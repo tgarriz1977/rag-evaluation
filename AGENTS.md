@@ -12,6 +12,7 @@ Mismo cluster RKE2 que los PoCs. Los PoCs target se acceden via Ingress:
 - MS GraphRAG: `https://graphrag.test.arba.gov.ar`
 - LlamaIndex: `https://llamaindex.test.arba.gov.ar`
 - LangChain: `https://langchain.test.arba.gov.ar`
+- RAGFlow: `https://ragflow.test.arba.gov.ar` (ya corriendo)
 
 ## Servicios que usa
 

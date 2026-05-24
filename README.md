@@ -95,20 +95,52 @@ Responder preguntas como:
 
 ---
 
+### RAGFlow — RAG engine todo-en-uno con agentes
+
+**Arquitectura:** RAGFlow es un motor RAG completo que combina ingesta inteligente de documentos (DeepDoc), chunking por templates, retrieval multi-método con re-ranking, agentes con MCP, y ejecución de código en sandbox. Tiene WebUI completa + API REST compatible con OpenAI.
+
+**Ventajas:**
+- ✅ **Deep Document Understanding** — parsers especializados que entienden la estructura real del documento (tablas, imágenes, slides, Excel, PDFs escaneados)
+- ✅ **Chunking por templates** — templates específicos para leyes, papers, libros, emails, presentaciones, QA, etc. (no un chunking genérico como los otros PoCs)
+- ✅ **Citas trazables** — cada respuesta incluye los chunks exactos que la respaldan, reduciendo alucinaciones
+- ✅ **Multiple recall + re-ranking** — combina varios métodos de recuperación con un re-ranker para mejorar precisión
+- ✅ **Múltiples fuentes de datos** — no solo subida de archivos: soporta Confluence, S3, Notion, Discord, Google Drive, páginas web
+- ✅ **Agentes + MCP** — sistema de agentes propio con soporte para Model Context Protocol
+- ✅ **Code executor** — puede ejecutar código Python/JS en sandbox (gVisor) dentro del flujo RAG
+- ✅ **WebUI completa** — interfaz web para usuarios no técnicos
+- ✅ **Ya está corriendo en el cluster ARBA** — namespace `ragflow` con ElasticSearch, MinIO, MySQL, Redis
+
+**Debilidades:**
+- ❌ No tiene grafo de conocimiento (como LightRAG)
+- ❌ No tiene descomposición de sub-preguntas (como LlamaIndex)
+- ❌ No tiene agente con LangGraph (usa su propio sistema de agentes, menos flexible)
+- ❌ API más compleja para integración programática (requiere crear dataset + chat assistant)
+- ❌ Mayor consumo de recursos que PoCs más livianos (ElasticSearch, múltiples servicios)
+
+**Ideal para:** Equipos que quieren una solución RAG completa "out of the box" con UI, chunking inteligente, y múltiples fuentes de datos sin tener que integrar componentes separados.
+
+---
+
 ### Tabla comparativa rápida
 
-| Aspecto | LightRAG | MS GraphRAG | LlamaIndex | LangChain+LangGraph |
-|---|---|---|---|---|
-| **Enfoque** | Grafo de conocimiento | Extracción de entidades | Routing de queries | Agentes + pipelines |
-| **WebUI** | ✅ Sí (React) | ❌ No | ❌ No | ❌ No |
-| **Indexación** | Automática | Manual (Job) | Explícita (/reindex) | Explícita (/reindex) |
-| **Memoria** | ❌ No | ❌ No | ✅ Chat | ✅ Chat |
-| **Sub-preguntas** | ❌ No | ❌ No | ✅ Sí | ❌ No (pero MultiQuery) |
-| **Agente** | ❌ No | ❌ No | ❌ No | ✅ LangGraph |
-| **Multi-query** | ❌ No | ❌ No | ❌ No | ✅ Sí |
-| **Velocidad** | Alta | Baja | Alta | Media |
-| **Complejidad** | Baja | Alta | Media | Alta |
-| **Mejor para...** | Exploración rápida con UI | Datasets grandes, visión global | Preguntas complejas, descomposición | Workflows agentivos, decisiones autónomas |
+| Aspecto | LightRAG | MS GraphRAG | LlamaIndex | LangChain+LangGraph | RAGFlow |
+|---|---|---|---|---|---|---|
+| **Enfoque** | Grafo de conocimiento | Extracción de entidades | Routing de queries | Agentes + pipelines | **RAG engine todo-en-uno** |
+| **WebUI** | ✅ Sí (React) | ❌ No | ❌ No | ❌ No | **✅ Completa** |
+| **Indexación** | Automática | Manual (Job) | Explícita (/reindex) | Explícita (/reindex) | **Automática (DeepDoc)** |
+| **Memoria** | ❌ No | ❌ No | ✅ Chat | ✅ Chat | ✅ Chat |
+| **Sub-preguntas** | ❌ No | ❌ No | ✅ Sí | ❌ No (pero MultiQuery) | ❌ No |
+| **Agente** | ❌ No | ❌ No | ❌ No | ✅ LangGraph | **✅ Propio + MCP** |
+| **Multi-query** | ❌ No | ❌ No | ❌ No | ✅ Sí | ❌ No (pero re-ranking) |
+| **Chunking** | Básico | Básico | Recursivo | Recursivo | **✅ Templates + DeepDoc** |
+| **Citas / Trazabilidad** | ❌ No | ❌ No | ❌ No | ❌ No | **✅ Sí** |
+| **Re-ranking** | ❌ No | ❌ No | ❌ No | ❌ No | **✅ Sí** |
+| **Fuentes de datos** | Subida archivos | Subida archivos | Subida archivos | Subida archivos | **✅ Confluence, S3, Notion, etc.** |
+| **Code executor** | ❌ No | ❌ No | ❌ No | ❌ No | **✅ Python/JS sandbox** |
+| **En cluster ARBA** | ❌ No | ❌ No | ❌ No | ❌ No | **✅ Ya corriendo** |
+| **Velocidad** | Alta | Baja | Alta | Media | Media |
+| **Complejidad** | Baja | Alta | Media | Alta | Media |
+| **Mejor para...** | Exploración rápida con UI | Datasets grandes, visión global | Preguntas complejas, descomposición | Workflows agentivos | **Solución completa out-of-the-box** |
 
 ## Escenarios
 
@@ -150,12 +182,15 @@ rag-evaluation/
 │       └── ...                # (futuro) metadatos extra
 ├── eval/
 │   ├── runner.py              # Orquestador principal
+│   ├── dataset.py             # Carga de escenarios + preguntas
+│   ├── metrics.py             # RAGAS integración
 │   ├── targets/
 │   │   ├── base.py            # Clase abstracta Target
 │   │   ├── lightrag.py        # LightRAG client
 │   │   ├── llamaindex.py      # LlamaIndex client
 │   │   ├── langchain.py       # LangChain client
-│   │   └── graphrag_ms.py     # MS GraphRAG client
+│   │   ├── graphrag_ms.py     # MS GraphRAG client
+│   │   └── ragflow.py         # RAGFlow client (datasets + chat assistant)
 │   ├── metrics.py             # RAGAS integración
 │   ├── reporters/
 │   │   ├── langfuse_reporter.py   # LangFuse tracing + scores

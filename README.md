@@ -10,6 +10,106 @@ Responder preguntas como:
 - ¿Cuál maneja mejor **preguntas complejas** vs preguntas directas?
 - ¿Cuál es más rápido / barato en tokens?
 
+## Los 4 PoCs en detalle
+
+### LightRAG — Knowledge Graph liviano
+
+**Arquitectura:** Construye un grafo de conocimiento a partir de los documentos: extrae entidades, relaciones y resúmenes. Soporta 4 modos de búsqueda: local (entidades cercanas), global (vista general), hybrid (combinación) y naive (RAG clásico sin grafo).
+
+**Ventajas:**
+- ✅ Tiene **WebUI React** — se puede usar sin saber programar
+- ✅ Indexación **automática** al subir documentos (no requiere /reindex manual)
+- ✅ Soporte nativo de **Docling** para PDFs complejos (tablas, OCR)
+- ✅ Rápido para documentos medianos (menos pasos de LLM que MS GraphRAG)
+- ✅ Multiple modos de query permiten ver el mismo contenido desde distinta granularidad
+
+**Debilidades:**
+- ❌ El grafo es liviano — para datasets grandes (>500 páginas) la calidad de las relaciones baja
+- ❌ No tiene **memoria conversacional** (cada query es independiente)
+- ❌ No descompone preguntas complejas en sub-preguntas
+
+**Ideal para:** Usuarios no técnicos que quieren explorar documentos con UI, o POCs rápidos donde se necesita resultados ya.
+
+---
+
+### Microsoft GraphRAG — Pipeline completo de extracción
+
+**Arquitectura:** Pipeline pesado de extracción de entidades, resúmenes de comunidades y clustering. Indexa en pasos: parseo → chunking → extracción de entidades → detección de comunidades → resúmenes por comunidad. Soportes 3 modos: local (entidades), global (comunidades), drift (exploratorio).
+
+**Ventajas:**
+- ✅ **Mejor para consultas globales** sobre datasets grandes — resúmenes por comunidad dan contexto que otros no tienen
+- ✅ Modo **drift** único — exploración iterativa que descubre nueva información
+- ✅ Basado en la investigación de Microsoft — el más riguroso académicamente
+- ✅ Bueno para responder preguntas que requieren **vista panorámica** del contenido
+
+**Debilidades:**
+- ❌ **Lento** — el indexing completo requiere muchas llamadas al LLM (puede tomar horas)
+- ❌ No tiene WebUI — solo API REST
+- ❌ Mayor consumo de tokens que cualquiera de los otros PoCs
+- ❌ Indexing separado del serving — requiere Job + Deployment separados
+- ❌ Memoria en pod solo, no persistente entre reinicios
+
+**Ideal para:** Datasets grandes (>1000 páginas) donde se necesitan respuestas que abarquen todo el corpus, no secciones específicas.
+
+---
+
+### LlamaIndex — Multi-query routing
+
+**Arquitectura:** Framework de datos para RAG que permite encadenar retrievers, índices y LLMs de forma declarativa. Este PoC ofrece 3 modos: simple (vector search clásico), subquestion (descomposición en sub-preguntas), chat (con memoria conversacional).
+
+**Ventajas:**
+- ✅ **Sub-question decomposition** — rompe preguntas complejas en partes, las responde por separado, y sintetiza
+- ✅ **Memoria conversacional** — el modo chat mantiene historial entre turnos
+- ✅ Más **rápido que MS GraphRAG** pero más completo que LightRAG
+- ✅ Arquitectura más simple que LangChain — menos boilerplate
+- ✅ Fácil de extender con nuevos retrievers o índices
+
+**Debilidades:**
+- ❌ No tiene WebUI — solo API REST
+- ❌ Indexación explícita (POST /reindex) — no es automática
+- ❌ No tiene capacidades agentivas — flujo lineal, no toma decisiones autónomas
+- ❌ Sub-question mode puede ser costoso en llamadas LLM
+
+**Ideal para:** Equipos técnicos que quieren un balance entre simplicidad y potencia, especialmente cuando necesitan descomposición de preguntas.
+
+---
+
+### LangChain + LangGraph — Agentes autónomos
+
+**Arquitectura:** LangChain como framework de pipelines + LangGraph para grafos de estado con ciclos y decisiones. Este PoC ofrece 4 modos: simple (vector search), multi-query (genera variaciones de la pregunta), agent (StateGraph con decisión autónoma), chat (memoria conversacional).
+
+**Ventajas:**
+- ✅ **Agente autónomo** — el LangGraph StateGraph decide por sí mismo si necesita buscar documentos o responder directamente
+- ✅ **MultiQueryRetriever** — genera 3-5 variaciones de la pregunta para cubrir distintos ángulos semánticos
+- ✅ El más **flexible** de todos — se puede extender con herramientas, loops, ciclos condicionales
+- ✅ Integración nativa con **LangFuse** via callbacks
+- ✅ Ecosistema más grande — conectores para todo (SQL, APIs, vectores, etc.)
+
+**Debilidades:**
+- ❌ **Curva de aprendizaje alta** — LangGraph tiene conceptos propios (StateGraph, nodes, edges, conditional edges)
+- ❌ Modo agent puede **alucinar más** si decide responder sin buscar (confianza excesiva del LLM)
+- ❌ Más código boilerplate que LlamaIndex para el mismo resultado
+- ❌ No tiene WebUI — solo API REST
+
+**Ideal para:** Equipos que ya conocen LangChain y necesitan workflows agentivos complejos con toma de decisiones autónoma.
+
+---
+
+### Tabla comparativa rápida
+
+| Aspecto | LightRAG | MS GraphRAG | LlamaIndex | LangChain+LangGraph |
+|---|---|---|---|---|
+| **Enfoque** | Grafo de conocimiento | Extracción de entidades | Routing de queries | Agentes + pipelines |
+| **WebUI** | ✅ Sí (React) | ❌ No | ❌ No | ❌ No |
+| **Indexación** | Automática | Manual (Job) | Explícita (/reindex) | Explícita (/reindex) |
+| **Memoria** | ❌ No | ❌ No | ✅ Chat | ✅ Chat |
+| **Sub-preguntas** | ❌ No | ❌ No | ✅ Sí | ❌ No (pero MultiQuery) |
+| **Agente** | ❌ No | ❌ No | ❌ No | ✅ LangGraph |
+| **Multi-query** | ❌ No | ❌ No | ❌ No | ✅ Sí |
+| **Velocidad** | Alta | Baja | Alta | Media |
+| **Complejidad** | Baja | Alta | Media | Alta |
+| **Mejor para...** | Exploración rápida con UI | Datasets grandes, visión global | Preguntas complejas, descomposición | Workflows agentivos, decisiones autónomas |
+
 ## Escenarios
 
 Cada escenario = un tipo de documento + un set de preguntas.

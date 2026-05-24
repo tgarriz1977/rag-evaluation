@@ -3,7 +3,7 @@
 ## Proyecto
 
 Framework de evaluación comparativa de PoCs RAG usando RAGAS + LangFuse.
-Repo: (pendiente GitLab)
+Repo: https://gitlab.arba.gov.ar/infraestructura/infra-ia/rag-evaluation
 
 ## Cluster
 

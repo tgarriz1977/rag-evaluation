@@ -1,0 +1,62 @@
+langfuse:
+  host: "https://langfuse.test.arba.gov.ar"
+  public_key: ""          # Completar con las credenciales
+  secret_key: ""          # Completar con las credenciales
+
+# Modelo para evaluacion LLM-as-judge (RAGAS internamente lo necesita)
+evaluator_llm:
+  model: "Arba/Qwen-Thinking"
+  api_base: "https://apillm.test.arba.gov.ar"
+  api_key: "sk-ma1...FEUQ"
+
+evaluator_embeddings:
+  model: "Qwen/Qwen3-Embedding-0.6B"
+  api_base: "http://qwen-embedding-svc.vllm:8000"
+
+# Targets: cada PoC que vamos a evaluar
+targets:
+  lightrag:
+    name: "LightRAG"
+    base_url: "https://lightrag.test.arba.gov.ar"
+    modes:
+      - local
+      - global
+      - hybrid
+      - naive
+    ingest_endpoint: "/documents/file"
+    reindex_endpoint: null  # LightRAG indexa automaticamente al subir
+    query_endpoint: "/query"
+
+  llamaindex:
+    name: "LlamaIndex"
+    base_url: "https://llamaindex.test.arba.gov.ar"
+    modes:
+      - simple
+      - subquestion
+      - chat
+    ingest_endpoint: "/ingest"
+    reindex_endpoint: "/reindex"
+    query_endpoint: "/query"
+
+  langchain:
+    name: "LangChain"
+    base_url: "https://langchain.test.arba.gov.ar"
+    modes:
+      - simple
+      - multi-query
+      - agent
+      - chat
+    ingest_endpoint: "/ingest"
+    reindex_endpoint: "/reindex"
+    query_endpoint: "/query"
+
+  graphrag_ms:
+    name: "MS GraphRAG"
+    base_url: "https://graphrag.test.arba.gov.ar"
+    modes:
+      - local
+      - global
+      - drift
+    ingest_endpoint: "/ingest"
+    reindex_endpoint: null  # MS GraphRAG requiere index manual por CLI
+    query_endpoint: "/query"

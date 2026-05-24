@@ -1,0 +1,39 @@
+# RAG Evaluation — Contexto para el modelo
+
+## Proyecto
+
+Framework de evaluación comparativa de PoCs RAG usando RAGAS + LangFuse.
+Repo: (pendiente GitLab)
+
+## Cluster
+
+Mismo cluster RKE2 que los PoCs. Los PoCs target se acceden via Ingress:
+- LightRAG: `https://lightrag.test.arba.gov.ar`
+- MS GraphRAG: `https://graphrag.test.arba.gov.ar`
+- LlamaIndex: `https://llamaindex.test.arba.gov.ar`
+- LangChain: `https://langchain.test.arba.gov.ar`
+
+## Servicios que usa
+
+| Servicio | URL |
+|---|---|
+| LangFuse | `langfuse.test.arba.gov.ar` |
+| ARBA LLM | `https://apillm.test.arba.gov.ar` (Qwen-Thinking) |
+
+## Estructura
+
+Ver README.md.
+
+## Flujo de evaluacion
+
+1. runner.py carga el escenario (docs + preguntas)
+2. Sube los docs a cada PoC target
+3. Hace reindex en cada PoC
+4. Por cada pregunta, consulta cada PoC en cada modo disponible
+5. Evalúa con RAGAS (faithfulness, answer relevancy)
+6. Envía traces + scores a LangFuse
+7. Muestra tabla resumen
+
+## Config
+
+Ver config.yaml — targets, langfuse, dataset paths.

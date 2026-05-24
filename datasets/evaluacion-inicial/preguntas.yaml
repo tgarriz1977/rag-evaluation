@@ -1,0 +1,57 @@
+escenario: "Evaluacion Inicial"
+descripcion: >
+  Primer bateria de pruebas con documentos reales provistos por el usuario.
+  Escenarios: leyes/reglamentos, ordenes de compra, actas/reuniones.
+
+preguntas:
+  # ── Escenario Leyes ──────────────────────────────────────────────
+  - id: "ley-001"
+    pregunta: "¿Cual es el monto minimo establecido en el articulo 3?"
+    tipo: extraccion-exacta
+    respuesta_esperada: ""
+    contexto: "Buscar en la seccion de articulos numerados"
+
+  - id: "ley-002"
+    pregunta: "Resumi los puntos principales de esta ley en 3 parrafos"
+    tipo: sumarizacion
+    respuesta_esperada: ""
+    contexto: "El resumen debe cubrir: alcance, obligaciones, sanciones"
+
+  # ── Escenario Ordenes de Compra ─────────────────────────────────
+  - id: "oc-001"
+    pregunta: "¿Cual es el monto total de la orden OC-2024-1234?"
+    tipo: extraccion-exacta
+    respuesta_esperada: ""
+    contexto: "Buscar al final del documento donde figura el total"
+
+  - id: "oc-002"
+    pregunta: "Lista todos los items de la orden OC-2024-5678 con sus cantidades"
+    tipo: extraccion-exacta
+    respuesta_esperada: ""
+    contexto: "La orden tiene una tabla con items, cantidades y precios unitarios"
+
+  - id: "oc-003"
+    pregunta: "Compara los totales de las ordenes OC-2024-1234 y OC-2024-5678"
+    tipo: comparacion
+    respuesta_esperada: ""
+    contexto: "Buscar los totales de ambas ordenes y compararlos"
+
+  # ── Mixto / Complejas ────────────────────────────────────────────
+  - id: "mix-001"
+    pregunta: "¿Cuantas ordenes de compra superan los $500,000 segun los documentos?"
+    tipo: compleja
+    respuesta_esperada: ""
+    contexto: "Requiere revisar multiples documentos y sumarizar"
+
+  - id: "mix-002"
+    pregunta: "¿Que impacto tiene la ley en las ordenes de compra?"
+    tipo: compleja
+    respuesta_esperada: ""
+    contexto: "Requiere cruzar informacion de la ley con las ordenes de compra"
+
+  # ── Con trampa (out-of-scope) ────────────────────────────────────
+  - id: "trampa-001"
+    pregunta: "¿Que dice el documento sobre la reforma jubilatoria de 2025?"
+    tipo: con-trampa
+    respuesta_esperada: "No hay informacion sobre reforma jubilatoria en los documentos"
+    contexto: "Este tema NO esta en los documentos — mide alucinacion"

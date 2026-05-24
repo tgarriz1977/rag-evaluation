@@ -3,12 +3,12 @@
 ## Proyecto
 
 Framework de evaluación comparativa de PoCs RAG usando RAGAS + LangFuse.
-Repo: https://gitlab.arba.gov.ar/infraestructura/infra-ia/rag-evaluation
+Repo: https://gitlab.arba.gov.ar/infraestructura/infra-ia/rags/rag-evaluation
 
 ## Cluster
 
 Mismo cluster RKE2 que los PoCs. Los PoCs target se acceden via Ingress:
-- LightRAG: `https://lightrag.test.arba.gov.ar`
+- LightRAG: `https://lightrag.test.arba.gov.ar` (repo: .../rags/lightrag-poc)
 - MS GraphRAG: `https://graphrag.test.arba.gov.ar`
 - LlamaIndex: `https://llamaindex.test.arba.gov.ar`
 - LangChain: `https://langchain.test.arba.gov.ar`

@@ -1,6 +1,6 @@
 # RAG Evaluation — Benchmark de PoCs con RAGAS + LangFuse
 
-Framework para evaluar y comparar múltiples PoCs RAG (LightRAG, MS GraphRAG, LlamaIndex, LangChain) sobre los mismos documentos y preguntas, usando métricas estandarizadas via RAGAS y observabilidad via LangFuse.
+Framework para evaluar y comparar múltiples PoCs RAG (LightRAG, MS GraphRAG, LlamaIndex, LangChain, RAGFlow) sobre los mismos documentos y preguntas, usando métricas estandarizadas via RAGAS y observabilidad via LangFuse.
 
 ## Objetivo
 
@@ -10,7 +10,7 @@ Responder preguntas como:
 - ¿Cuál maneja mejor **preguntas complejas** vs preguntas directas?
 - ¿Cuál es más rápido / barato en tokens?
 
-## Los 4 PoCs en detalle
+## Los 5 PoCs en detalle
 
 ### LightRAG — Knowledge Graph liviano
 

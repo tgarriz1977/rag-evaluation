@@ -1,7 +1,7 @@
 langfuse:
   host: "https://langfuse.test.arba.gov.ar"
-  public_key: ""          # Completar con las credenciales
-  secret_key: ""          # Completar con las credenciales
+  public_key: "pk-lf-82d7601b-4584-4005-975f-e59d617ca74f"
+  secret_key: "sk-lf-edb2e88f-74dc-421d-bb75-adb9af056567"
 
 # Modelo para evaluacion LLM-as-judge (RAGAS internamente lo necesita)
 evaluator_llm:

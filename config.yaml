@@ -7,7 +7,7 @@ langfuse:
 evaluator_llm:
   model: "Arba/Qwen-Thinking"
   api_base: "https://apillm.test.arba.gov.ar"
-  api_key: "sk-ma1...FEUQ"
+  api_key: "sk-cf4MDytpGq0Jae2Kz6DvzA"
 
 evaluator_embeddings:
   model: "Qwen/Qwen3-Embedding-0.6B"

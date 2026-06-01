@@ -22,10 +22,11 @@ class Escenario(BaseModel):
     nombre: str
     descripcion: str
     preguntas: list[Pregunta]
+    dir_name: str
 
     @property
     def docs_dir(self) -> Path:
-        return DATASETS_DIR / self.nombre / "docs"
+        return DATASETS_DIR / self.dir_name / "docs"
 
 
 def cargar_escenario(nombre: str) -> Escenario:
@@ -47,6 +48,7 @@ def cargar_escenario(nombre: str) -> Escenario:
         nombre=data.get("escenario", nombre),
         descripcion=data.get("descripcion", ""),
         preguntas=[Pregunta(**p) for p in data.get("preguntas", [])],
+        dir_name=nombre,
     )
 
     print(f"  Escenario: {escenario.nombre}")

@@ -9,6 +9,15 @@ Uso:
 """
 
 import sys
+
+# Compatibilidad: Ragas espera imports viejos de Vertex AI que en langchain-community moderna no existen.
+# Redireccionamos el modulo deprecado de community al paquete especializado.
+try:
+    import langchain_google_vertexai
+    sys.modules['langchain_community.chat_models.vertexai'] = langchain_google_vertexai
+except ImportError:
+    pass
+
 import asyncio
 import argparse
 from pathlib import Path
@@ -116,6 +125,9 @@ async def ejecutar_escenario(
             ok = await t.upload_document(doc)
             status = "OK" if ok else "FAIL"
             print(f"    {status}: {doc.name}")
+            # Dejar respirar al parser (evita sobrecargar Docling con 503)
+            if t.name in ("MS GraphRAG", "LightRAG", "RAGFlow"):
+                await asyncio.sleep(2)
 
     # 3. Reindex
     print(f"\n{'─'*60}")
@@ -124,6 +136,16 @@ async def ejecutar_escenario(
         ok = await t.reindex()
         status = "OK" if ok else "FAIL"
         print(f"  [{t.name}] reindex: {status}")
+        
+        # Si es MS GraphRAG, pausamos el script para que el usuario corra el Job en el cluster
+        if t.name == "MS GraphRAG":
+            print(f"\n[!] ATENCIÓN: MS GraphRAG requiere indexación manual en el cluster.")
+            print(f"    Por favor, abrí otra terminal y ejecutá el Job de Kubernetes:")
+            print(f"    kubectl -n graphrag-ms delete job graphrag-ms-index 2>/dev/null")
+            print(f"    kubectl -n graphrag-ms create job --from=cronjob/graphrag-ms-index manual-index")
+            print(f"    ")
+            print(f"    Monitoreá el progreso y, una vez que el Job finalice con éxito:")
+            input("    ▶ Presioná ENTER en esta terminal para continuar con las preguntas de evaluación...")
 
     # 4. Correr preguntas
     print(f"\n{'─'*60}")

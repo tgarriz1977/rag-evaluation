@@ -170,6 +170,28 @@ Cada escenario = un tipo de documento + un set de preguntas.
      f) Muestra resumen en consola
 ```
 
+### Workflow particular para MS GraphRAG
+
+Dado que MS GraphRAG utiliza un pipeline pesado de procesamiento que se ejecuta de forma asíncrona mediante un Job de Kubernetes (`graphrag-ms-index`), el flujo para evaluarlo requiere un paso manual intermedio:
+
+1. **Subir documentos**: Correr el runner filtrando para el target de GraphRAG para subir y convertir los archivos:
+   ```bash
+   .venv/bin/python -m eval.runner <escenario> --target graphrag_ms
+   ```
+   *Esto colocará los documentos en formato Markdown dentro de la carpeta compartida en el PVC.*
+
+2. **Ejecutar el Job de Indexación**: Desde una terminal con acceso al cluster, disparar la indexación manual:
+   ```bash
+   kubectl -n graphrag-ms delete job graphrag-ms-index 2>/dev/null
+   kubectl -n graphrag-ms create job --from=cronjob/graphrag-ms-index manual-index
+   ```
+   *Esperar a que el Job de indexación termine con éxito.*
+
+3. **Correr la Evaluación**: Volver a correr el runner de evaluación para ejecutar la batería de preguntas, calcular métricas RAGAS e impactar en LangFuse:
+   ```bash
+   .venv/bin/python -m eval.runner <escenario> --target graphrag_ms
+   ```
+
 ## Estructura
 
 ```
@@ -204,6 +226,10 @@ rag-evaluation/
 ## Cómo agregar un escenario nuevo
 
 1. Crear `datasets/<nombre>/docs/` y poner los PDFs ahí
+
+> [!IMPORTANT]
+> **Estructura Plana en `docs/`:** Los documentos deben colocarse directamente en la raíz de la carpeta `docs/` (no dentro de subcarpetas ni comprimidos en archivos `.zip`). De lo contrario, el runner del evaluador fallará al leerlos o los ignorará.
+
 2. Crear `datasets/<nombre>/preguntas.yaml` con este formato:
 
 ```yaml

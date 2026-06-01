@@ -47,12 +47,12 @@ def evaluar_respuesta_ragas(
 
         # Si tenemos LangFuse, agregamos los scores al trace
         if langfuse_client and trace_id:
-            langfuse_client.score(
+            langfuse_client.create_score(
                 trace_id=trace_id,
                 name="faithfulness",
                 value=scores["faithfulness"],
             )
-            langfuse_client.score(
+            langfuse_client.create_score(
                 trace_id=trace_id,
                 name="answer_relevancy",
                 value=scores["answer_relevancy"],

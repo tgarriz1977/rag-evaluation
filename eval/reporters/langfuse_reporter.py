@@ -3,7 +3,7 @@ LangFuse reporter — crea traces por cada pregunta+modo y envia scores.
 """
 
 from typing import Optional
-from langfuse import Langfuse
+from langfuse import Langfuse, propagate_attributes
 from ..targets.base import TargetResult
 
 
@@ -16,6 +16,7 @@ class LangFuseReporter:
             secret_key=secret_key,
             host=host,
         )
+        self.host = host
         self._session_id: Optional[str] = None
 
     @property
@@ -40,7 +41,7 @@ class LangFuseReporter:
                 "output_tokens": result.output_tokens,
             },
         ) as span:
-            with self.client.propagate_attributes(session_id=self.session_id):
+            with propagate_attributes(session_id=self.session_id):
                 # Score de latencia (invertido: menor latencia = mayor score)
                 # Normalizacion simple: 1000ms = 0.5, 5000ms+ = 0.0
                 latency_score = max(0.0, 1.0 - (result.latency_ms / 5000.0))

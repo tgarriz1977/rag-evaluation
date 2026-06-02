@@ -192,6 +192,27 @@ Dado que MS GraphRAG utiliza un pipeline pesado de procesamiento que se ejecuta 
    .venv/bin/python -m eval.runner <escenario> --target graphrag_ms
    ```
 
+### Opciones avanzadas de optimización (Iteración rápida)
+
+Para acelerar las pruebas repetidas y el desarrollo continuo de preguntas, el evaluador cuenta con opciones avanzadas que permiten evitar esperas innecesarias o fallos externos de red:
+
+*   **`--skip-upload`**: Salta la etapa de subida de archivos si los documentos ya fueron cargados previamente a los targets impositivos.
+*   **`--skip-reindex`**: Salta el disparo de reindexación en los PoCs (y salta la confirmación de ENTER interactiva del Job de MS GraphRAG) si el índice ya está completamente construido en el clúster.
+*   **`--no-langfuse`**: Desactiva el reporte de telemetría a Langfuse. Esto es de suma utilidad si la infraestructura de red de Langfuse tiene latencias elevadas o está bajo mantenimiento técnico.
+
+#### Ejecución sin red / Iteración local con RAGAS
+Aun si utilizas `--no-langfuse`, **el evaluador calculará de manera local los scores de RAGAS** (Faithfulness y Answer Relevancy) usando tus servidores internos de inferencia. 
+
+Para evaluar de manera instantánea reutilizando el índice y viendo los resultados directo en tu terminal, ejecuta:
+```bash
+.venv/bin/python -m eval.runner <escenario> --target graphrag_ms --skip-upload --skip-reindex --no-langfuse
+```
+
+Al finalizar la corrida con este modo:
+*   Se mostrarán las columnas y resúmenes de puntajes **Faithfulness Prom.** y **Relevancy Prom.** estructuradas en las tablas de la consola.
+*   Se generará un **informe de resultados en Markdown** en `datasets/<escenario>/resultados_evaluacion.md` con tablas comparativas y las respuestas completas a cada pregunta.
+*   Se guardará el registro completo en formato JSON en `datasets/<escenario>/resultados_evaluacion.json` para almacenamiento histórico.
+
 ## Estructura
 
 ```

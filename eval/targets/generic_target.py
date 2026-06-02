@@ -58,7 +58,7 @@ class GenericTarget(Target):
         payload = {"query": question, "mode": mode}
         start = time.time()
         try:
-            async with httpx.AsyncClient(timeout=120) as client:
+            async with httpx.AsyncClient(timeout=600) as client:
                 resp = await client.post(url, json=payload)
                 elapsed = (time.time() - start) * 1000
                 if resp.status_code == 200:

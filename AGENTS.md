@@ -38,3 +38,14 @@ Ver README.md.
 ## Config
 
 Ver config.yaml — targets, langfuse, dataset paths.
+
+## Notas de Diagnóstico e Infraestructura
+
+### Endpoints del Evaluador RAGAS
+* **Embeddings**: Cuando la evaluación se ejecute desde fuera del cluster (ej. localmente), se debe utilizar la URL de Ingress externa **`https://qwen-embedding.test.arba.gov.ar/v1`** en lugar del host interno del cluster (`http://qwen-embedding-svc.vllm:8000`).
+* **LLM Evaluador**: Las peticiones de inferencia en `https://apillm.test.arba.gov.ar/v1` (tanto para `Arba/Qwen-Thinking` como para `Arba/Qwen-Flash`) pueden demorar significativamente o sufrir timeouts si los pods del cluster están saturados. Es posible que requieran verificar los pods de inferencia en los namespaces `vllm`/`litellm` o configurar timeouts altos.
+
+### Indexación de MS GraphRAG
+* **Requisitos del modo Drift**: Requiere explícitamente generar embeddings para los reportes de comunidad (`community_full_content`).
+* **Ejecución de Indexación**: Se ejecuta de forma manual mediante el Kubernetes Job `manual-index` en el namespace `graphrag-ms`. Una vez completado, se debe ejecutar el runner con los flags `--skip-upload --skip-reindex` para evitar re-subir documentos y regenerar el índice innecesariamente.
+

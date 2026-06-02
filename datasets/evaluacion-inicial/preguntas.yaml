@@ -1,57 +1,82 @@
 escenario: "Evaluacion Inicial"
 descripcion: >
-  Primer bateria de pruebas con documentos reales provistos por el usuario.
-  Escenarios: leyes/reglamentos, ordenes de compra, actas/reuniones.
+  Evaluación inicial basada en documentos reales de juicios de apremio provincial de ARBA.
+  Cubre impuestos a los Ingresos Brutos (IIBB), Automotor e Inmobiliario, analizando excepciones de prescripción (fallo Filcrosa), inhabilidad de título y desistimientos.
 
 preguntas:
-  # ── Escenario Leyes ──────────────────────────────────────────────
-  - id: "ley-001"
-    pregunta: "¿Cual es el monto minimo establecido en el articulo 3?"
+  # ── Extracción Exacta ─────────────────────────────────────────────
+  - id: "ext-001"
+    pregunta: "¿Cuál es el monto total reclamado y el número de expediente administrativo en el juicio de apremio contra UOLE S.A.?"
     tipo: extraccion-exacta
-    respuesta_esperada: ""
-    contexto: "Buscar en la seccion de articulos numerados"
+    respuesta_esperada: "El monto reclamado es de $ 2.584.493,44 y el expediente administrativo es el 2360-0329894/2026."
+    contexto: "Buscar en el inicio de la sentencia o título ejecutivo de UOLE S.A."
 
-  - id: "ley-002"
-    pregunta: "Resumi los puntos principales de esta ley en 3 parrafos"
+  - id: "ext-002"
+    pregunta: "¿Qué dominio automotor y qué períodos tributarios están involucrados en el caso de González Moran Matías Javier?"
+    tipo: extraccion-exacta
+    respuesta_esperada: "El dominio es AE775OY y los períodos tributarios son 04 y 05 de 2021 (título 1.349.640/R)."
+    contexto: "Buscar en los detalles del desistimiento parcial de ARBA o en la resolución de primera instancia de González Moran."
+
+  - id: "ext-003"
+    pregunta: "En el caso Alvarez Neumáticos S.A., ¿a qué monto se readecuó la demanda de apremio tras desistir del Título Ejecutivo N° 1322022?"
+    tipo: extraccion-exacta
+    respuesta_esperada: "La demanda se readecuó a la suma de $ 273.615,73."
+    contexto: "Buscar en el apartado de RESULTA de la sentencia de Primera Instancia de Alvarez Neumáticos."
+
+  - id: "ext-004"
+    pregunta: "¿Qué juez dictó la sentencia de primera instancia en el caso de Goldberg Martín Damián y en qué juzgado?"
+    tipo: extraccion-exacta
+    respuesta_esperada: "La sentencia fue dictada por el juez Francisco José Terrier, a cargo del Juzgado de Primera Instancia en lo Contencioso Administrativo Nº 3 de La Plata."
+    contexto: "Buscar en los vistos y resultandos del proveído de Goldberg Martín."
+
+  # ── Sumarización ─────────────────────────────────────────────────
+  - id: "sum-001"
+    pregunta: "Resume cuáles fueron los fundamentos del contribuyente UOLE S.A. para plantear la prescripción de la deuda."
     tipo: sumarizacion
-    respuesta_esperada: ""
-    contexto: "El resumen debe cubrir: alcance, obligaciones, sanciones"
+    respuesta_esperada: "UOLE S.A. planteó la inconstitucionalidad del artículo 159 del Código Fiscal de la provincia, argumentando que por tratarse de períodos anteriores al Código Civil y Comercial de la Nación, la prescripción debe regirse por el Código Civil de la Nación (legislación de fondo dictada por el Congreso, citando el fallo Filcrosa) y no por el Código Fiscal local, el cual establece regulaciones de suspensión e inicio diferentes."
+    contexto: "Revisar la excepción de prescripción planteada por el contribuyente UOLE S.A."
 
-  # ── Escenario Ordenes de Compra ─────────────────────────────────
-  - id: "oc-001"
-    pregunta: "¿Cual es el monto total de la orden OC-2024-1234?"
-    tipo: extraccion-exacta
-    respuesta_esperada: ""
-    contexto: "Buscar al final del documento donde figura el total"
+  - id: "sum-002"
+    pregunta: "Explica brevemente por qué el Juzgado de Primera Instancia resolvió de forma adversa al Fisco en el caso de González Moran Matías Javier."
+    tipo: sumarizacion
+    respuesta_esperada: "Se resolvió de forma adversa al Fisco debido a que el título ejecutivo original contenía un error formal extrínseco (falta de liquidez o cantidad exigible). Posteriormente, la propia ARBA emitió la Resolución N° 594/2026 desistiendo parcialmente del cobro de los períodos 01/2022 a 05/2022 porque el contribuyente gozaba de una exención impositiva sobre el dominio automotor AE775OY."
+    contexto: "Ver la resolución de primera instancia de González Moran y la mención a la exención y desistimiento parcial."
 
-  - id: "oc-002"
-    pregunta: "Lista todos los items de la orden OC-2024-5678 con sus cantidades"
-    tipo: extraccion-exacta
-    respuesta_esperada: ""
-    contexto: "La orden tiene una tabla con items, cantidades y precios unitarios"
-
-  - id: "oc-003"
-    pregunta: "Compara los totales de las ordenes OC-2024-1234 y OC-2024-5678"
+  # ── Comparación ──────────────────────────────────────────────────
+  - id: "comp-001"
+    pregunta: "Compara los argumentos de prescripción de Frigorífico de la Costa S.A. y UOLE S.A. ¿Qué períodos específicos reclama cada uno como prescriptos?"
     tipo: comparacion
-    respuesta_esperada: ""
-    contexto: "Buscar los totales de ambas ordenes y compararlos"
+    respuesta_esperada: "Frigorífico de la Costa S.A. argumenta la prescripción de los períodos 01 a 12 de 2012 y 01 a 02 de 2013 alegando la interrupción de plazos por recursos administrativos interpuestos. Por su parte, UOLE S.A. opone prescripción sobre los períodos 10/2009 a 12/2009 basándose en la inconstitucionalidad de los artículos 159 y 161 del Código Fiscal por contradecir el Código Civil nacional (doctrina del fallo Filcrosa)."
+    contexto: "Comparar las defensas de prescripción de Frigorífico de la Costa y UOLE S.A."
 
-  # ── Mixto / Complejas ────────────────────────────────────────────
+  - id: "comp-002"
+    pregunta: "Compara los fallos de Primera Instancia y de Cámara en el caso Alvarez Neumáticos S.A. ¿Se mantuvo la misma postura respecto a la responsabilidad de los directores/socios?"
+    tipo: comparacion
+    respuesta_esperada: "La respuesta debe contrastar cómo se resolvió la excepción de inhabilidad de título planteada por los codemandados (socios/directores como Néstor Abel Álvarez y María del Rosario Dumrauf) en la primera instancia frente a la resolución de segunda instancia de la Cámara."
+    contexto: "Comparar los expedientes y sentencias de primera y segunda instancia de Alvarez Neumáticos S.A."
+
+  # ── Complejas (Multi-documento) ──────────────────────────────────
   - id: "mix-001"
-    pregunta: "¿Cuantas ordenes de compra superan los $500,000 segun los documentos?"
+    pregunta: "¿Qué es el fallo 'Filcrosa' en el contexto de estas sentencias y cómo lo utilizan los contribuyentes frente a las pretensiones de ARBA?"
     tipo: compleja
-    respuesta_esperada: ""
-    contexto: "Requiere revisar multiples documentos y sumarizar"
+    respuesta_esperada: "El fallo 'Filcrosa' es un precedente de la Corte Suprema de Justicia de la Nación que establece que los plazos de prescripción de las obligaciones tributarias provinciales se rigen por el Código Civil de la Nación y no por los códigos fiscales locales. Los contribuyentes lo invocan de manera sistemática para declarar la inconstitucionalidad de los artículos del Código Fiscal bonaerense que extienden los plazos de prescripción o modifican el inicio de su cómputo."
+    contexto: "Buscar menciones al precedente Filcrosa en los argumentos de prescripción de los contribuyentes."
 
   - id: "mix-002"
-    pregunta: "¿Que impacto tiene la ley en las ordenes de compra?"
+    pregunta: "Identifica al menos dos contribuyentes en los cuales el Fisco (ARBA) haya realizado un desistimiento parcial, reliquidación de deuda o readecuación del monto demandado debido a errores o exenciones."
     tipo: compleja
-    respuesta_esperada: ""
-    contexto: "Requiere cruzar informacion de la ley con las ordenes de compra"
+    respuesta_esperada: "Los contribuyentes son: 1) González Moran Matías Javier (se reliquidó a $76.861,29 tras desistirse de los períodos de 2022 por estar exento) y 2) Alvarez Neumáticos S.A. (se desistió del Título Ejecutivo N° 1322022 readecuando la demanda a $273.615,73)."
+    contexto: "Cruzar las causas de González Moran y Alvarez Neumáticos en lo relativo a desistimientos formales."
 
-  # ── Con trampa (out-of-scope) ────────────────────────────────────
+  - id: "mix-003"
+    pregunta: "Agrupa y menciona qué contribuyentes de los expedientes analizados corresponden al impuesto a los Ingresos Brutos (IIBB) y cuáles al impuesto Inmobiliario."
+    tipo: compleja
+    respuesta_esperada: "Contribuyentes de Ingresos Brutos (IIBB): UOLE S.A., Frigorífico de la Costa S.A., Alvarez Neumáticos S.A. y Goldberg Martín. Contribuyentes de impuesto Inmobiliario: Giannino Carlos, Saens Briones y Escuela Florida SRL."
+    contexto: "Revisar los títulos y carátulas de los expedientes para identificar los impuestos involucrados."
+
+  # ── Con Trampa (Out-of-Scope) ────────────────────────────────────
   - id: "trampa-001"
-    pregunta: "¿Que dice el documento sobre la reforma jubilatoria de 2025?"
+    pregunta: "¿Qué resolución tomó el Juzgado Contencioso Administrativo respecto a la habilitación comercial y pago de tasas de seguridad e higiene de la firma Cervecería Quilmes en 2025?"
     tipo: con-trampa
-    respuesta_esperada: "No hay informacion sobre reforma jubilatoria en los documentos"
-    contexto: "Este tema NO esta en los documentos — mide alucinacion"
+    respuesta_esperada: "No hay información sobre Cervecería Quilmes, habilitaciones comerciales ni tasas municipales de seguridad e higiene en los documentos provistos, ya que el expediente se limita a juicios de apremio por impuestos provinciales (IIBB, automotor, inmobiliario) de otros contribuyentes específicos."
+    contexto: "La pregunta introduce una entidad y tasas municipales ausentes del set de datos para medir alucinación."

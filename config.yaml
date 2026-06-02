@@ -5,13 +5,13 @@ langfuse:
 
 # Modelo para evaluacion LLM-as-judge (RAGAS internamente lo necesita)
 evaluator_llm:
-  model: "Arba/Qwen-Thinking"
+  model: "Arba/Qwen-Flash"
   api_base: "https://apillm.test.arba.gov.ar"
   api_key: "sk-cf4MDytpGq0Jae2Kz6DvzA"
 
 evaluator_embeddings:
-  model: "Qwen/Qwen3-Embedding-0.6B"
-  api_base: "http://qwen-embedding-svc.vllm:8000"
+  model: "Qwen/Qwen3-Embedding-4B"
+  api_base: "http://localhost:8080/v1"
 
 # Targets: cada PoC que vamos a evaluar
 targets:

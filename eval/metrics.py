@@ -2,10 +2,44 @@
 Metricas — wrapper sobre RAGAS para evaluar respuestas.
 """
 
+import yaml
+from pathlib import Path
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
 from datasets import Dataset
 from langfuse import Langfuse
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+
+CONFIG_PATH = Path(__file__).resolve().parent.parent / "config.yaml"
+
+_llm = None
+_embeddings = None
+
+def _get_evaluator_models():
+    global _llm, _embeddings
+    if _llm is None or _embeddings is None:
+        if not CONFIG_PATH.exists():
+            raise FileNotFoundError(f"No se encuentra {CONFIG_PATH}")
+        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+            cfg = yaml.safe_load(f)
+        
+        # Cargar LLM
+        llm_cfg = cfg.get("evaluator_llm", {})
+        _llm = ChatOpenAI(
+            model=llm_cfg.get("model"),
+            api_key=llm_cfg.get("api_key"),
+            base_url=llm_cfg.get("api_base"),
+            temperature=0.0
+        )
+        
+        # Cargar Embeddings
+        embed_cfg = cfg.get("evaluator_embeddings", {})
+        _embeddings = OpenAIEmbeddings(
+            model=embed_cfg.get("model"),
+            openai_api_key=llm_cfg.get("api_key"), # RAGAS requiere pasar una key
+            openai_api_base=embed_cfg.get("api_base"),
+        )
+    return _llm, _embeddings
 
 
 def evaluar_respuesta_ragas(
@@ -35,9 +69,12 @@ def evaluar_respuesta_ragas(
             "contexts": [contexto],
         })
 
+        llm, embeddings = _get_evaluator_models()
         result = evaluate(
             dataset,
             metrics=[faithfulness, answer_relevancy],
+            llm=llm,
+            embeddings=embeddings,
         )
 
         scores = {

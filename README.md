@@ -208,10 +208,21 @@ Para evaluar de manera instantánea reutilizando el índice y viendo los resulta
 .venv/bin/python -m eval.runner <escenario> --target graphrag_ms --skip-upload --skip-reindex --no-langfuse
 ```
 
-Al finalizar la corrida con este modo:
-*   Se mostrarán las columnas y resúmenes de puntajes **Faithfulness Prom.** y **Relevancy Prom.** estructuradas en las tablas de la consola.
-*   Se generará un **informe de resultados en Markdown** en `datasets/<escenario>/resultados_evaluacion.md` con tablas comparativas y las respuestas completas a cada pregunta.
-*   Se guardará el registro completo en formato JSON en `datasets/<escenario>/resultados_evaluacion.json` para almacenamiento histórico.
+#### Requisitos de Conectividad para Evaluador RAGAS (Embeddings)
+Para que el evaluador local de RAGAS pueda calcular las métricas cuantitativas (`faithfulness` y `answer_relevancy`), necesita conectarse al servidor de embeddings. Tenés dos alternativas:
+
+* **Opción A (Con Port-Forward):** Si en `config.yaml` tenés configurado `api_base: "http://localhost:8080/v1"`, debés abrir otra terminal y levantar el redireccionamiento de puertos contra el clúster:
+  ```bash
+  kubectl -n vllm port-forward svc/qwen3-embedding-4b-svc 8080:8000
+  ```
+  *Mantené esa terminal abierta durante toda la ejecución de la evaluación.*
+
+* **Opción B (Acceso Directo por Ingress):** Podés editar el archivo `config.yaml` para apuntar directamente al endpoint externo expuesto sin necesidad de port-forward:
+  ```yaml
+  evaluator_embeddings:
+    model: "Qwen/Qwen3-Embedding-4B"
+    api_base: "https://qwen-embedding.test.arba.gov.ar/v1"
+  ```
 
 ## Estructura
 

@@ -23,11 +23,15 @@ def _get_evaluator_models():
         with open(CONFIG_PATH, "r", encoding="utf-8") as f:
             cfg = yaml.safe_load(f)
         
+        import os
         # Cargar LLM
         llm_cfg = cfg.get("evaluator_llm", {})
+        api_key = llm_cfg.get("api_key", "dummy-key")
+        os.environ["OPENAI_API_KEY"] = api_key
+        
         _llm = ChatOpenAI(
             model=llm_cfg.get("model"),
-            api_key=llm_cfg.get("api_key"),
+            api_key=api_key,
             base_url=llm_cfg.get("api_base"),
             temperature=0.0
         )
@@ -36,8 +40,8 @@ def _get_evaluator_models():
         embed_cfg = cfg.get("evaluator_embeddings", {})
         _embeddings = OpenAIEmbeddings(
             model=embed_cfg.get("model"),
-            openai_api_key=llm_cfg.get("api_key"), # RAGAS requiere pasar una key
-            openai_api_base=embed_cfg.get("api_base"),
+            api_key=api_key, # RAGAS requiere pasar una key
+            base_url=embed_cfg.get("api_base"),
         )
     return _llm, _embeddings
 
@@ -70,6 +74,11 @@ def evaluar_respuesta_ragas(
         })
 
         llm, embeddings = _get_evaluator_models()
+        # Vincular de forma explicita a las metricas para evitar fallbacks
+        faithfulness.llm = llm
+        answer_relevancy.llm = llm
+        answer_relevancy.embeddings = embeddings
+        
         result = evaluate(
             dataset,
             metrics=[faithfulness, answer_relevancy],
@@ -78,8 +87,8 @@ def evaluar_respuesta_ragas(
         )
 
         scores = {
-            "faithfulness": float(result.get("faithfulness", 0)),
-            "answer_relevancy": float(result.get("answer_relevancy", 0)),
+            "faithfulness": float(result["faithfulness"]),
+            "answer_relevancy": float(result["answer_relevancy"]),
         }
 
         # Si tenemos LangFuse, agregamos los scores al trace

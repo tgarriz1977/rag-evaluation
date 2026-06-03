@@ -1,0 +1,716 @@
+# Informe de Evaluación — Escenario: evaluacion-inicial
+Generado el: `2026-06-02 00:17:38`
+
+## Resumen Estadístico
+| Target / Modo | Consultas | Errores | Latencia Promedio | Faithfulness Prom. | Relevancy Prom. |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| MS GraphRAG / drift | 12 | 12 | 120035ms | 0.00 | 0.00 |
+| MS GraphRAG / global | 12 | 4 | 87841ms | 0.00 | 0.00 |
+| MS GraphRAG / local | 12 | 0 | 21872ms | 0.00 | 0.00 |
+
+## Detalle de Consultas
+
+### 1. ¿Cuál es el monto total reclamado y el número de expediente administrativo en el juicio de apremio contra UOLE S.A.?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `13685ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+En el juicio de apremio contra UOLE S.A., identificado como **JUICIO DE APREMIO N° 1.662.290**, el monto total reclamado es de **$2.584.493,44** [Data: Entities (672); Sources (89)]. Este procedimiento, iniciado el 10 de abril de 2025, busca el cobro de deudas correspondientes al Impuesto sobre los Ingresos Brutos por los períodos de octubre a diciembre de 2009 [Data: Sources (89)].
+
+El expediente administrativo asociado a este litigio es el número **2360-0329894/2026** [Data: Entities (678); Sources (89); Relationships (1028)]. El Fisco de la Provincia de Buenos Aires actúa como demandante en este caso, mientras que UOLE S.A. opuso una excepción de prescripción, argumentando la inconstitucionalidad de ciertos artículos del Código Fiscal provincial frente a las disposiciones del Código Civil y la Constitución Nacional [Data: Sources (89); Relationships (1017, 1028)].
+
+---
+### 2. ¿Qué dominio automotor y qué períodos tributarios están involucrados en el caso de González Moran Matías Javier?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `12925ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+En el caso judicial que involucra a Matías Javier González Moran, el dominio automotor en cuestión es **AE7750Y** [Data: Entities (1304); Relationships (2140)].
+
+Los períodos tributarios originalmente reclamados por el Fisco de la Provincia de Buenos Aires en el título ejecutivo N° 1.349.640 abraban los meses de **abril y mayo de 2021, así como de enero a mayo de 2022** [Data: Sources (274, 109)]. Sin embargo, se determinó que González Moran estaba exento del pago del impuesto a los automotores para este vehículo desde el **21 de diciembre de 2021 hasta el 19 de junio de 2035** [Data: Sources (274, 109); Relationships (2133)].
+
+En consecuencia, el Fisco solicitó un desistimiento parcial del juicio respecto de los períodos de **enero, febrero, marzo, abril y mayo de 2022**, ya que durante esos meses el contribuyente no estaba obligado al pago debido a la exención vigente [Data: Sources (274, 109)]. La deuda fue reliquidada, ajustando el monto a cobrar exclusivamente a los períodos en los que la obligación tributaria era efectiva, resultando en una deuda final de **$76.861,29** [Data: Sources (274, 109)].
+
+---
+### 3. En el caso Alvarez Neumáticos S.A., ¿a qué monto se readecuó la demanda de apremio tras desistir del Título Ejecutivo N° 1322022?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `18437ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+Basado en los datos proporcionados, **no existe información** que indique que el Fisco haya desistido del Título Ejecutivo N° 1.322.008, ni que se haya realizado una readecuación de la demanda de apremio por dicho desistimiento.
+
+Por el contrario, los datos disponibles sugieren lo siguiente:
+
+1.  **El Título Ejecutivo N° 1.322.008 fue emitido y es válido para iniciar el apremio:** Este título fue emitido por la Agencia de Recaudación de Buenos Aires (ARBA) el 21 de marzo de 2023, precisamente para iniciar el "Juicio de Apremio" correspondiente a las deudas tributarias de Álvarez Neumáticos S.A. y Néstor Abel Álvarez [Data: Sources (31); Entities (574)].
+2.  **Origen del monto:** El monto de este título ($2,507,588.20 en la liquidación previa, aunque el título específico se menciona sin monto exacto en la relación directa, la resolución 12944 es la que fija ese monto) es el resultado de una **reliquidación** ordenada por el Tribunal Fiscal de Apelación tras haber aceptado parcialmente los recursos de apelación. Esta reliquidación corrigió las deudas originales establecidas en las Disposiciones Delegadas SEFSC N° 5289 y 5286 de 2014 [Data: Sources (31); Entities (19); Relationships (2137)].
+3.  **Continuidad del proceso:** El juicio de apremio iniciado con este título no fue desistido por el Fisco; de hecho, el texto indica que con el inicio de este juicio se "interrumpió el curso de prescripción" y que el Fisco considera que sus acciones no se encuentran prescriptas [Data: Sources (31, 32)].
+4.  **Referencia a otro título:** Existe una mención a un "Título Ejecutivo N° 1.349.640/R" que fue emitido por ARBA para corregir errores en un título original, pero no se vincula en los datos con el desistimiento del N° 1.322.008 [Data: Entities (1303); Relationships (2137)].
+
+En conclusión, los datos no respaldan la premisa de que se desistió del Título N° 1.322.008. El monto de $2,507,588.20 (referido en la Resolución Nº 12944) es el resultado de una **reliquidación judicial/administrativa previa**, no de un desistimiento del título ejecutivo en el juicio de apremio [Data: Entities (19); Sources (31)].
+
+---
+### 4. ¿Qué juez dictó la sentencia de primera instancia en el caso de Goldberg Martín Damián y en qué juzgado?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `11920ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+Based on the provided data tables, there is no information regarding a case involving "Goldberg Martín Damián," nor is there any record identifying which judge or court handled such a case. Therefore, I cannot answer this question using the available data.
+
+The provided data focuses on judicial litigation in the Province of Buenos Aires involving entities such as **Fisco de la Provincia de Buenos Aires**, **Escuela de Florida SRL**, **CIRASA ROMAN FABRICIO**, and others [Data: Reports (18); Entities (1000, 745, 221, +more)]. Specific judges mentioned in the dataset include **Gallo Quintian Federico**, **Lopez Mariano Martin Camilo**, **Marcelo Mauro Gradin**, **Pablo Cristian Germain**, and **Marcelo Daniel Fernandez** [Data: Entities (8, 1766, 502, 1421, 1162); Relationships (4, 2914, 773, 2375, 1878)]. However, none of these records are associated with the name Goldberg Martín Damián.
+
+---
+### 5. Resume cuáles fueron los fundamentos del contribuyente UOLE S.A. para plantear la prescripción de la deuda.
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `21933ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+**Fundamentos de la Prescripción planteados por UOLE S.A.**
+
+En el marco del juicio de apremio provincial iniciado por el Fisco de la Provincia de Buenos Aires, la empresa UOLE S.A. opuso la excepción de prescripción para evitar el pago de la deuda tributaria correspondiente a los períodos octubre, noviembre y diciembre de 2009. Los fundamentos centrales de esta defensa se estructuraron en torno a la jerarquía de las normas legales y la inconstitucionalidad de ciertos artículos del Código Fiscal provincial [Data: Entities (673); Sources (89, 269)].
+
+En primer lugar, UOLE S.A. sostuvo que, al tratarse de períodos fiscales anteriores a la entrada en vigencia del Código Civil y Comercial de la Nación, es el **Código Civil** (Ley 340) y no el Código Fiscal provincial el que regula la prescripción de las obligaciones tributarias [Data: Sources (89)]. La empresa argumentó que la prescripción, sus efectos y modalidades, se rigen por las disposiciones del Código Civil, que es una legislación de fondo dictada por el Congreso de la Nación con alcance general en todo el territorio nacional [Data: Sources (89)].
+
+En segundo lugar, se plantó la **inconstitucionalidad del artículo 159 del Código Fiscal** de la Provincia de Buenos Aires. UOLE S.A. argumentó que este artículo vulnera los artículos 31 y 75 inciso 22 de la Constitución Nacional al regular de manera diferente el instituto de la prescripción [Data: Sources (89)]. Específicamente, la empresa señaló que el Código Fiscal establece que el plazo de prescripción comienza a activarse a partir del 1° de enero del año siguiente al vencimiento de los plazos de presentación de declaraciones juradas, lo cual contradice el artículo 3956 del Código Civil, que determina el comienzo del cómputo desde el vencimiento de la obligación [Data: Sources (269)].
+
+Como soporte jurisprudencial, UOLE S.A. invocó sistemáticamente el precedente conocido como el **Caso "Filcrosa"**. Este fallo de la Corte Suprema de Justicia de la Nación establece que las provincias no tienen competencia para apartarse de los plazos de prescripción estipulados por el Congreso Nacional mediante sus propias legislaciones fiscales [Data: Sources (89); Relationships (1011)]. La defensa argumentó que, bajo este precedente, el plazo quinquenal de prescripción para los períodos de 2009 se inició el 1° de enero de 2010 y operó su cumplimiento el 1° de enero de 2015, sin que existieran causales de suspensión o interrupción idóneas que interrumpieran dicho cómputo antes de esa fecha [Data: Sources (272)].
+
+Finalmente, se descartaron los actos administrativos posteriores, como la Disposición Determinativa y Sancionatoria N° 4993/15 notificada en octubre de 2015, ya que se argumentó que, dado que la prescripción ya había operado en enero de 2015, dichos actos no podían tener efectos suspensivos válidos conforme al artículo 3986 del Código Civil [Data: Sources (272)]. La sentencia final hizo lugar a la excepción de prescripción, declarando que la Autoridad de Aplicación Tributaria había perdido la oportunidad de exigir el pago dentro del plazo legal establecido [Data: Sources (273)].
+
+---
+### 6. Explica brevemente por qué el Juzgado de Primera Instancia resolvió de forma adversa al Fisco en el caso de González Moran Matías Javier.
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `13945ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+En el caso de **González Moran, Matías Javier**, la resolución favorable al demandado (y por lo tanto adversa al Fisco) se debe principalmente a la aplicación de una **exención impositiva** por el impuesto sobre vehículos para ciertos períodos fiscales.
+
+Aunque el Fisco de la Provincia de Buenos Aires inició un **Juicio de Apremio** (ejecución judicial) contra González Moran por deudas de impuestos vehiculares relacionados con el vehículo identificado como **AE7750Y** [Data: Entities (1300, 2140); Relationships (2131, 2136, 2140)], la resolución definitiva modificó el alcance de la deuda.
+
+Según la **Resolución N° 594/2026**, se determinó que González Moran estaba **exento** del pago del impuesto para periodos específicos. Esta determinación legal condujo a una **retirada parcial de la pretensión** por parte del Fisco, reduciendo o eliminando la obligación tributaria para aquellos periodos exentos [Data: Relationships (2133)].
+
+Este tipo de casos suele involucrar la verificación de la elegibilidad para exenciones (por ejemplo, por tipo de vehículo, situación laboral, o beneficios fiscales vigentes en la provincia), lo que obliga a la autoridad fiscal a ajustar sus reclamaciones cuando el contribuyente acredita dichos beneficios, tal como ocurrió en este procedimiento administrativo y judicial [Data: Entities (1300); Relationships (2131, 2133)].
+
+---
+### 7. Compara los argumentos de prescripción de Frigorífico de la Costa S.A. y UOLE S.A. ¿Qué períodos específicos reclama cada uno como prescriptos?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `45451ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+### Argumentos de Prescripción y Períodos Reclamados
+
+La disputa legal entre UOLE S.A. y Frigorífico de la Costa S.A. con las autoridades fiscales de la Provincia de Buenos Aires (Fisco) gira en torno a la validez de los plazos de prescripción establecidos en el Código Fiscal provincial frente a las normas del Código Civil. Aunque ambos casos invocan principios similares, los argumentos específicos y los períodos fiscales en cuestión difieren significativamente.
+
+#### UOLE S.A.: El Caso "Filcrosa" y los Períodos de 2009
+
+UOLE S.A. se encuentra en un juicio de apremio (Expediente 2360-0329894/2026) donde el Fisco reclama el pago del Impuesto sobre los Ingresos Brutos por los períodos de **octubre, noviembre y diciembre de 2009** [Data: Sources (89)]. El monto reclamado asciende a $2.584.493,44 [Data: Sources (89)].
+
+El argumento central de UOLE S.A., presentado mediante una "Excepción de Prescripción" el 10/06/2025, sostiene que la deuda está extinguida por prescripción bajo las normas del **Código Civil derogado** (Ley 340), ya que los períodos impositivos son anteriores a la entrada en vigencia del Código Civil y Comercial de la Nación [Data: Entities (673); Sources (89)].
+
+*   **Fundamento Legal:** UOLE S.A. invoca la doctrina del **"Caso Filcrosa"**, un precedente de la Suprema Corte de Justicia de la Nación (CSJN), que establece que las provincias no tienen competencia para legislar autónomamente sobre los plazos de prescripción de obligaciones tributarias, debiendo regirse por el Código Civil nacional [Data: Entities (674); Relationships (1011), (537); Sources (89)].
+*   **Inconstitucionalidad del Código Fiscal:** La empresa argumenta que el Artículo 159 del Código Fiscal de la Provincia de Buenos Aires es inconstitucional porque regula el inicio y las causales de suspensión de la prescripción de manera distinta a lo establecido en los artículos 3956 y 3986 del antiguo Código Civil, violando así los artículos 31 y 75 inc. 12 de la Constitución Nacional [Data: Sources (89); Relationships (851)].
+*   **Cálculo del Plazo:** Según el tribunal y la defensa de UOLE, el plazo quinquenal de prescripción para el período 2009 comenzó a correr el **1° de enero de 2010** (año siguiente al vencimiento de la obligación) [Data: Sources (272)]. Por lo tanto, la prescripción operó el **1° de enero de 2015** [Data: Sources (272)].
+*   **Ineficacia de la Actuación Fiscal:** El tribunal determinó que la "Disposición Determinativa y Sancionatoria N° 4993/15", notificada a UOLE el 21/10/2015, no pudo interrumpir la prescripción porque esta ya había ocurrido en enero de 2015. La resolución de inicio del procedimiento determinativo (N° 1060/2015) fue dictada el 10/04/2015, fuera del plazo prescriptivo [Data: Entities (1781); Sources (272)].
+
+El Fisco, por su parte, argumenta que la nueva legislación del Código Civil y Comercial (artículos 2532 y 2560) derriba las interpretaciones judiciales de "Filcrosa" y "Casa Casmma", restableciendo la competencia provincial para regular la prescripción fiscal [Data: Sources (89); Relationships (1015)]. Sin embargo, el tribunal de primera instancia hizo lugar a la excepción de prescripción de UOLE S.A. [Data: Sources (272)].
+
+#### Frigorífico de la Costa S.A.: Fiscalización Tardía y Períodos 2015-2016
+
+El caso de Frigorífico de la Costa S.A. (relacionado con el Expediente N° 236 0433532/2017 y la Causa P-12582-MP2E) involucra reclamaciones por el **Impuesto a las Ganancias** y el **Impuesto sobre los Ingresos Brutos** por los períodos fiscales **2015 y 2016** [Data: Entities (1116), (1044); Relationships (1791)].
+
+*   **Períodos Específicos:** La deuda determinada abarca períodos que incluyen los meses del **87/2015 al 90/2016** (lo que corresponde a los años fiscales 2015 y 2016) [Data: Sources (154)].
+*   **Argumento de Prescripción y Dilación:** A diferencia de UOLE, donde el foco es la competencia legislativa, el argumento en el caso de Frigorífico de la Costa parece centrarse en la **dilación administrativa** del Fisco y el inicio tardío del cómputo prescriptivo. La fuente indica que el Fisco inició el procedimiento de fiscalización el **4/4/2017**, casi dos años después del vencimiento del primer período reclamado (85/2015) [Data: Sources (154)].
+*   **Cómputo del Plazo:** El Fisco argumenta que, al ser impuestos que exigen declaración anual, el plazo de prescripción debería comenzar el 1° de enero del año siguiente al período fiscal (ej. 1/1/2016 para 2015) [Data: Sources (154)]. Bajo esta lógica, y aplicando el segundo párrafo del art. 159 del Código Fiscal, el plazo de cinco años se extendería significativamente (ej. hasta el 1/1/2023 para el período 90/2016) [Data: Sources (154)].
+*   **Defensa del Contribuyente:** Aunque el texto no detalla el argumento exacto de prescripción de Frigorífico de la Costa con el mismo nivel de detalle que el de UOLE, se infiere que la empresa cuestiona la validez de la determinación de la deuda (Disposición Delegada SEATYS n° 5865/2018, dictada el 27/8/2018) basándose en la tardanza del ente recaudador. El texto fuente critica esta demora como "desidia y/o simple burocracia", sugiriendo que el plazo para exigir el pago ya había caducado o que la extensión del plazo es injustificada [Data: Sources (154)].
+*   **Precedentes Citados:** La Cámara de Apelaciones citó el caso de Frigorífico de la Costa (Causa P-11991-MP2E) como precedente para guiar decisiones sobre la aplicación del Código Fiscal y los recursos de reconsideración [Data: Entities (1085); Relationships (1726)].
+
+#### Comparativa de los Argumentos
+
+| Característica | UOLE S.A. | Frigorífico de la Costa S.A. |
+| :--- | :--- | :--- |
+| **Períodos Reclamados** | Octubre-Diciembre de **2009** [Data: Sources (89)] | Períodos fiscales **2015-2016** (ej. 87/2015 a 90/2016) [Data: Sources (154)] |
+| **Impuesto Principal** | Ingresos Brutos [Data: Sources (89)] | Ingresos Brutos e Impuesto a las Ganancias [Data: Entities (1116); Sources (154)] |
+| **Argumento Legal Central** | **Doctrina Filcrosa:** Inconstitucionalidad del Código Fiscal provincial; primacía del Código Civil derogado. [Data: Entities (674); Sources (89)] | **Dilación Administrativa:** Inicio tardío de la fiscalización (2017 para deudas de 2015-2016) y cuestionamiento al cómputo extensivo del plazo prescriptivo. [Data: Sources (154)] |
+| **Resultado/Estado** | Tribunal de primera instancia hizo lugar a la excepción de prescripción [Data: Sources (272)]. | El caso sirve como precedente; el texto fuente critica la extensión del plazo por parte del Fisco. [Data: Sources (154); Entities (1085)] |
+
+En resumen, UOLE S.A. defiende la prescripción basada en un **conflicto de competencias constitucionales** (Nacional vs. Provincial) y la aplicación del antiguo Código Civil para deudas antiguas (2009). Frigorífico de la Costa S.A., por su parte, enfrenta una fiscalización realizada con años de atraso (2017 para deudas de 2015-2016), donde el argumento se centra en la **tardanza del accionar fiscal** y la supuesta extensión injustificada del plazo prescriptivo mediante el Código Fiscal.
+
+---
+### 8. Compara los fallos de Primera Instancia y de Cámara en el caso Alvarez Neumáticos S.A. ¿Se mantuvo la misma postura respecto a la responsabilidad de los directores/socios?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `26907ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+Based on the provided data, there is a clear divergence between the stance of the First Instance court and the Appellate Court (Cámara) regarding the liability of directors and partners in the case involving **Alvarez Neumaticos S.A.** (also referred to as Alvar Neumaticos S.A. or Álvarez Neumáticos S.A.).
+
+### Divergence in Director Liability
+
+**First Instance: Enforcement of Solidary Liability**
+At the First Instance level, the court initially enforced the tax debts against the company and its responsible individuals, including **Nestor Abel Alvarez** and **Maria del Rosario Dumrauf**. The proceedings were initiated as an *Apremio Provincial* (provincial enforcement action) by the Fisco (Provincial Treasury of Buenos Aires). In this phase, the court ordered the full payment of capital and fines against these defendants [Data: Reports (5); Entities (247, 240, 307); Relationships (342, 341, 2219)]. The First Instance judgment appeared to uphold the application of solidary liability for the company directors/partners based on the Provincial Fiscal Code, leading to executive actions against them personally [Data: Reports (5); Entities (247)].
+
+**Appellate Court (Cámara): Rejection of Solidary Liability due to Unconstitutionality**
+In contrast, the Appellate Court, specifically the **Cámara de Apelación en lo Contencioso Administrativo de San Nicolás (CCASN)** and the higher "Esta Camara" (Alzada), adopted a different posture. The appellate body ruled on the **inadmissibility of solidary liability for company directors**, citing due process principles and constitutional conflicts [Data: Entities (1637, 560); Reports (5)].
+
+The Appellate Court challenged the constitutionality of Articles 157–161 of the Provincial Fiscal Code regarding director liability, arguing that these provisions conflict with the **Companies Law (Ley de Sociedades)** and the **National Constitution** [Data: Sources (30, 137); Entities (1015, 1017, 1519)]. Specifically, the court noted that the Fiscal Code imposed solidary liability on directors without requiring proof of fault or intent, which contradicted the standards set by the Companies Law [Data: Entities (1519); Relationships (2486)]. The CCASN cited precedents from the Supreme Court of Justice of the Province of Buenos Aires (SCBA) to support the view that such solidary liability lacks normative basis if it acts as a sanction without proper judicial determination of fault [Data: Entities (1637, 1015); Relationships (2692, 1605)].
+
+### Prescription and Procedural Disputes
+
+The Appellate Court also focused heavily on the **prescription periods** for tax debts. While the First Instance relied on the Fiscal Code's specific prescription rules (Article 157, a five-year period starting January 1st following the violation) [Data: Sources (30); Entities (560); Relationships (890)], the Appellate Court applied the **Civil Code** (Law 340) and constitutional protections. The appellate judges argued that the Fiscal Code's suspension and interruption mechanisms for prescription were unconstitutional because they extended the period beyond what was allowed by the National Constitution (Article 17, property rights) and the Civil Code [Data: Sources (137, 249); Entities (197); Relationships (263, 269)].
+
+Consequently, the Appellate Court found that the tax actions were **prescribed** under the Civil Code's five-year rule (Article 4027), which began running from January 1st of the year following the fiscal period in question (e.g., 2010 for the 2009 period) [Data: Sources (137, 30)]. This directly contradicted the First Instance's finding that the debt was still enforceable due to the specific suspensive effects outlined in the Fiscal Code.
+
+### Conclusion
+
+**No, the same posture was not maintained.**
+
+*   **First Instance:** Supported the Fisco’s claim, enforcing solidary liability against directors (Nestor Abel Alvarez, Maria del Rosario Dumrauf) and applying the Provincial Fiscal Code’s prescription rules.
+*   **Appellate Court:** Reversed the stance by declaring the solidary liability provisions of the Fiscal Code unconstitutional as applied to directors (requiring fault/intent per the Companies Law) and ruling that the tax debt was prescribed under the National Civil Code, thereby protecting the directors from personal enforcement [Data: Entities (1637, 560, 1017); Relationships (2486, 2692); Sources (137)].
+
+---
+### 9. ¿Qué es el fallo 'Filcrosa' en el contexto de estas sentencias y cómo lo utilizan los contribuyentes frente a las pretensiones de ARBA?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `29943ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+### El Precedente 'Filcrosa' y la Jerarquía Normativa
+
+El fallo "Filcrosa", formalmente conocido como *Filcrosa S.A.* (Fallos 326:3899), es un precedente fundamental en la jurisprudencia fiscal argentina dictado por la Corte Suprema de Justicia de la Nación (CSJN) [Data: Entities (281, 529, 296); Relationships (1103, 401, 387)]. Este caso estableció un principio crucial regarding la jerarquía normativa: la supremacía del Código Civil Nacional sobre las ordenanzas y códigos fiscales provinciales en materia de prescripción y regulación de obligaciones [Data: Entities (281); Sources (33)].
+
+La doctrina "Filcrosa" sostiene que, en virtud del artículo 75, inc. 12 de la Constitución Nacional, la potestad de dictar los códigos de fondo (que incluyen las reglas sobre la extinción de obligaciones, como la prescripción) reside exclusivamente en el Estado Nacional [Data: Sources (33, 241)]. Por lo tanto, las provincias no pueden dictar normas fiscales que sean incompatibles con el Código Civil, especialmente en lo que respecta a los plazos de prescripción [Data: Sources (33, 241)]. Este precedente limita el poder regulatorio local y protege a los contribuyentes de normas provinciales que podrían extender los plazos de prescripción más allá de lo establecido por la ley civil nacional [Data: Entities (281)].
+
+### Aplicación por parte de los Contribuyentes frente a ARBA
+
+En el contexto de las sentencias proporcionadas, los contribuyentes utilizan el precedente "Filcrosa" principalmente para oponer la **excepción de prescripción** contra las pretensiones de recaudación de la Administración de Rentas de la Provincia de Buenos Aires (ARBA) o del Fisco Provincial [Data: Sources (33, 241, 96, 32)].
+
+1.  **Declaración de Inconstitucionalidad de Normas Provinciales:** Los contribuyentes argumentan que los artículos del Código Fiscal de la Provincia de Buenos Aires que establecen plazos de prescripción distintos o más amplios que los del Código Civil (como los artículos 157, 159, 160 y 161) son inconstitucionales [Data: Sources (33, 241)]. Al invocar "Filcrosa", buscan que los tribunales apliquen el plazo quinquenal (5 años) establecido en el artículo 4027 del Código Civil derogado, en lugar de los plazos más extensos que podría imponer la normativa fiscal local [Data: Sources (33, 241)].
+
+2.  **Cómputo del Plazo:** Se utiliza el precedente para determinar cuándo comienza a correr el plazo de prescripción. Según la doctrina citada en las fuentes, la prescripción comienza a contar desde la fecha en que la obligación se torna exigible (fecha de vencimiento), conforme al Código Civil, y no según reglas administrativas locales que podrían intentar modificar este inicio [Data: Sources (33, 241)]. Por ejemplo, en el caso analizado, se determinó que los anticipos de Ingresos Brutos eran exigibles al mes siguiente de su devengo, iniciándose allí el cómputo de los 5 años [Data: Sources (241)].
+
+3.  **Defensa contra la Reclamo de Deudas Antiguas:** Cuando ARBA intenta ejecutar deuda de periodos fiscales antiguos (por ejemplo, de 2009, 2012 o 2013), los contribuyentes demuestran que han transcurrido más de 5 años desde la exigibilidad de esas deudas sin que medie un acto interruptivo válido (como una demanda judicial oportuna) [Data: Sources (241, 96)]. Al aplicar "Filcrosa", los tribunales han declarado prescriptas estas deudas, desestimando las acciones del Fisco [Data: Sources (241, 96)].
+
+### Impacto en la Jurisprudencia y Casos Específicos
+
+La influencia del fallo "Filcrosa" es tal que ha sido reiterada por la Suprema Corte de Justicia de la Provincia de Buenos Aires (SCBA) en casos como *Cooperativa Provisión Almaceneros Minoristas de Punta Alta* (C.81.253), consolidando su aplicación en la jurisdicción bonaerense [Data: Sources (33, 241); Relationships (1114)]. Además, otros fallos como *Casa Casmma S.R.L.* han reafirmado la obligatoriedad de acatar esta doctrina por parte de los tribunales inferiores [Data: Entities (677, 298); Relationships (1019, 402)].
+
+En los expedientes citados, se observa que los jueces, al considerar la excepción de prescripción, priorizan la aplicación del Código Civil anterior (para hechos ocurridos antes de agosto de 2015) basándose en "Filcrosa", declarando que la legislación provincial no puede ampliar indebidamente el plazo de prescripción en perjuicio del contribuyente [Data: Sources (241, 96, 32)]. Esto resulta en la prescripción de la totalidad o parte de los períodos reclamados por ARBA, protegiendo así los derechos de los deudores fiscales basados en la seguridad jurídica y la jerarquía constitucional [Data: Sources (241, 96)].
+
+---
+### 10. Identifica al menos dos contribuyentes en los cuales el Fisco (ARBA) haya realizado un desistimiento parcial, reliquidación de deuda o readecuación del monto demandado debido a errores o exenciones.
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `26461ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+Basado en los datos proporcionados, se identifican al menos dos contribuyentes en los cuales la Agencia de Recaudación de la Provincia de Buenos Aires (ARBA) realizó un desistimiento parcial, reliquidación de deuda o readecuación del monto demandado debido a errores administrativos o exenciones tributarias.
+
+**1. Matías Javier González Moran**
+En el caso de Matías Javier González Moran, ARBA realizó un desistimiento parcial del juicio de apremio y una reliquidación de la deuda reclamada. Esto se debió a un error en la emisión del título ejecutivo original, que no contemplaba que el contribuyente estaba exento del impuesto automotor para el dominio AE775OY debido a un beneficio de exención vigente desde el 21 de diciembre de 2021 hasta el 19 de junio de 2035 [Data: Sources (274); Entities (1302); Relationships (2133, 2134)]. Mediante la Resolución N° 594/2026, dictada el 18 de febrero de 2026, ARBA autorizó el desistimiento parcial respecto de los períodos de 2022 incluidos en el Título Ejecutivo N° 1.349.640, reconociendo que el ejecutado no resultaba ser sujeto pasivo obligado al pago por estar exento [Data: Sources (274); Entities (1302); Relationships (2133)]. Como consecuencia, se emitió un nuevo Título Ejecutivo reliquidado (N° 1.349.640/R) y el monto de la demanda se modificó para adecuarse a lo efectivamente adeudado, fijándose en $76.861,29 [Data: Sources (274); Entities (1303); Relationships (2133)].
+
+**2. Escuela de Florida S.R.L. (referido también como Escuela de Flora S.R.L.)**
+En el caso de Escuela de Florida S.R.L., hubo un litigio relacionado con la negación de una exención del Impuesto Inmobiliario para la partida inmobiliaria 110-026168-1. ARBA había denegado inicialmente el beneficio mediante la Disposición Delegada N° 5/2019, argumentando la falta de documentación para acreditar que la propiedad correspondía a la parcela específica requerida para la exención educativa [Data: Reports (3); Sources (111); Entities (812, 746); Relationships (1277, 1278)]. Sin embargo, el caso destaca cómo este error administrativo inicial (la denegación basada en omisos de documentación que luego se presentaron) generó un juicio de apremio por más de $2.237.320,30, el cual resultó en sentencia adversa al Fisco. Aunque el texto del source 111 no describe explícitamente una "reliquidación" final en favor del contribuyente dentro del extracto, sí detalla el proceso donde la empresa impugnó la disposición y señaló que nunca fue notificada de la resolución del recurso de reconsideración, lo que llevó a que el título ejecutivo base del apremio fuera impugnado por inhabilidad y pendencia de recursos con efecto suspensivo [Data: Sources (111); Entities (746); Relationships (1277, 1278)]. La mención en el Reporte 3 de "Administrative error resolutions" y el contexto de la disputa por exenciones sitúan a esta entidad como un caso donde la readecuación o la validez de la deuda fue cuestionada y parcialmente desestimada judicialmente debido a los errores procesales y sustantivos en la aplicación de la exención [Data: Reports (3); Entities (746); Relationships (1277, 1278)].
+
+Adicionalmente, se menciona el caso de **Adolfo Ramón Chuguransky**, donde ARBA otorgó la "desvinculación de responsabilidad tributaria" según la Resolución 3/13, lo que implicó que no era el responsable del pago del impuesto inmobiliario para la partida 016-019077-9 desde el 6 de junio de 2006, tras la venta del inmueble a Ezequiel H. Donoso. Esto constituye una readecuación de la responsabilidad fiscal, aunque no necesariamente un desistimiento de un juicio de apremio iniciado con error, sino un reconocimiento administrativo de la falta de legitimación pasiva [Data: Sources (210); Entities (1477, 1417, 1479, 1432); Relationships (2448, 2449, 2452)].
+
+---
+### 11. Agrupa y menciona qué contribuyentes de los expedientes analizados corresponden al impuesto a los Ingresos Brutos (IIBB) y cuáles al impuesto Inmobiliario.
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `30427ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+Based on the analyzed data, the taxpayers and legal entities involved in the disputes are primarily associated with the **Gross Income Tax** (known in Spanish as *Impuesto a los Ingresos Brutos* or IIB/IIBB), which is collected by ARBA (Agencia de Recaudación de la Provincia de Buenos Aires). The **Real Estate Tax** (*Impuesto Inmobiliario*) is mentioned in specific administrative contexts involving property liability and exemptions, but fewer individual taxpayers are explicitly detailed for this specific tax compared to the Gross Income Tax cases.
+
+### Taxpayers Subject to Gross Income Tax (IIB / IIBB)
+
+The majority of the legal disputes and enforcement actions (*Juicios de Apremio*) detailed in the records concern liabilities related to the Gross Income Tax. The following entities and individuals are identified as taxpayers or responsible parties for this tax:
+
+*   **LAR ELITE SECURITY SERVIS S.A.** (also referred to as LAR ELITE SECURITY S.A.): This company is involved in a dispute regarding Gross Income Tax payments and a regularization plan. They faced a collection proceeding initiated by the *Fisco de la Provincia de Buenos Aires*. A specific issue arose from an error by the Banco de la Provincia de Buenos Aires, which led to a duplicated quota payment [Data: Reports (3); Entities (1321, 83, 87); Relationships (2188, 111)].
+*   **BUILDING CRONOS XVIII S.A.:** This entity successfully challenged fines imposed by ARBA, arguing that the agency had violated statutory prescription periods (statute of limitations). Their case highlights legal tensions regarding the timing of enforcement actions for tax debts [Data: Reports (3); Entities (203); Relationships (277)].
+*   **S.E.A SERVICIOS EMPRESARIOS S.A.:** This company acted as a Collection Agent for the Gross Income Tax. A specific dispute involved its performance as an agent for the fiscal period 2010, involving determinations of omitted perceptions and withheld taxes. The company appealed these determinations to the Fiscal Court of Appeals [Data: Entities (991); Sources (203); Relationships (2300)].
+*   **GOLBERG, MARTIN DAMIAN:** Identified as a taxpayer involved in a judicial collection proceeding specifically for Gross Income taxes. His case involves the analysis of withholdings and perceptions declared under this tax regime [Data: Entities (1313, 84); Relationships (609)].
+*   **NBO NEO BULK OPERATOR SRL:** This firm is the subject of a dispute involving the attribution of tax responsibility to its managing partner, Sr. Camacho. The case centers on the "solidary responsibility" of the manager for the tax obligations of the company regarding the IIB [Data: Sources (231); Entities (1600); Relationships (2634, 2635)].
+*   **Alvarez Neumaticos S.A.:** Mentioned in the context of disputes with the Tax Authority (*Fisco*) regarding the Gross Income Tax, particularly concerning execution proceedings and prescription debates [Data: Entities (84)].
+
+The Gross Income Tax is defined as an annual tax on habitual commercial, industrial, or professional activities, governed by the Fiscal Code (*Código Fiscal*), which regulates prescription terms and the roles of collection agents [Data: Entities (1607, 1378, 1599, 84, 991); Relationships (2647, 2655, 2304)].
+
+### Taxpayers Subject to Real Estate Tax (Impuesto Inmobiliario)
+
+The records regarding the Real Estate Tax (*Impuesto Inmobiliario*) focus more on administrative procedures, exemptions, and property liability detachment rather than large-scale enforcement lawsuits like those seen with the IIB. The following entities are linked to this tax:
+
+*   **ESCUELA DE FLORA S.R.L.:** This entity is involved in a dispute regarding a tax exemption for a property. ARBA denied the exemption request via Delegated Disposition N° 5/2019 due to missing documentation. The *Departamento de Recaudación Impuesto Inmobiliario* (Department of Real Estate Tax Collection) handled the review of this request [Data: Reports (3); Entities (746, 753, 23, 818); Relationships (1166, 1164)].
+*   **Ezequiel H. Donoso:** This individual acquired a property in 2006 and was subsequently notified by ARBA of his responsibility for property taxes. His case illustrates the administration of property tax liability upon acquisition [Data: Reports (3); Entities (1415, 1439); Relationships (2367, 2401)].
+*   **Adolfo Ramón Chuguransky:** This entity is mentioned in the context of detaching tax liability, a process governed by ARBA regulations such as RN 3/13. This demonstrates the administrative procedures surrounding property ownership changes and the transfer of tax obligations [Data: Reports (3); Entities (1477, 1417, 1479); Relationships (2448, 2451)].
+
+The *Impuesto Inmobiliario* is imposed on property owners, usufructuaries, and possessors within the Province of Buenos Aires, and its collection is managed by specific departments within ARBA, such as the *Departamento de Recaudación Impuesto Inmobiliario* [Data: Entities (781, 23, 818)].
+
+---
+### 12. ¿Qué resolución tomó el Juzgado Contencioso Administrativo respecto a la habilitación comercial y pago de tasas de seguridad e higiene de la firma Cervecería Quilmes en 2025?
+**Target / Modo:** `MS GraphRAG / local`  
+**Latencia:** `10434ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+Based on the provided data tables, there is no information regarding a resolution by the Contentious Administrative Court concerning the commercial habilitation and payment of security and hygiene fees for the company **Cervecería Quilmes** in 2025.
+
+The data contains references to a legal case involving **Microómibus Quilmes S.A.** (record id 1404) in litigation with the Fisco de la Provincia de Buenos Aires regarding tax collection procedures [Data: Entities (1404); Relationships (2336)]. It also mentions various other entities such as **Frigorifico de la Costa S.A.** [Data: Entities (1116)], **Arquimex SA** [Data: Entities (974)], and **Escuela de Florida S.R.L.** [Data: Entities (1272)], but does not mention Cervecería Quilmes. Therefore, I cannot answer the specific question about Cervecería Quilmes based on the provided evidence.
+
+---
+### 13. ¿Cuál es el monto total reclamado y el número de expediente administrativo en el juicio de apremio contra UOLE S.A.?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `120027ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 14. ¿Qué dominio automotor y qué períodos tributarios están involucrados en el caso de González Moran Matías Javier?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `120027ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 15. En el caso Alvarez Neumáticos S.A., ¿a qué monto se readecuó la demanda de apremio tras desistir del Título Ejecutivo N° 1322022?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `70646ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+Based on the provided analyst reports, there is no information regarding a "Título Ejecutivo N° 1322022" or a specific readjustment of a collection demand following the withdrawal of such a title. Consequently, the question cannot be answered as stated because the premise does not match the data available in the reports.
+
+However, the reports do provide details on other executive titles and enforcement proceedings involving **Alvarez Neumáticos S.A.**, which may clarify the context of the legal actions against the company:
+
+### Relevant Executive Titles and Proceedings
+
+**1. Juicio de Apremio N° 1476706**
+A specific enforcement proceeding, identified as **Juicio de Apremio N° 1476706**, was initiated in **March 2023** against Alvarez Neumáticos S.A. This proceeding concerned a tax debt of approximately **$410,652.44** plus associated fines [Data: Reports (89, 299)]. The reports explicitly state that this is a distinct proceeding and is not presented as a readjustment of a 2009 title [Data: Reports (89)].
+
+**2. Título Ejecutivo N° 1.322.008**
+The data mentions **Título Ejecutivo N° 1.322.008** as a key instrument used by the tax authority (Fisco) to initiate collection proceedings for **Gross Income Tax advances** (Impuestos a las Ganancias) against Alvarez Neumáticos S.A. [Data: Reports (299)]. Note that this title number (1.322.008) differs from the one mentioned in the user's question (1322022).
+
+**3. Título Ejecutivo N° 1,373,56**
+Another executive title, **N° 1,373,56**, is mentioned in a different context related to **Real Estate Tax** (Impuesto Inmobiliario). This title involves a debt of **$913,788.20**. However, the reports clarify that this title is not linked to the specific procedural history of Title N° 1,322,008 in the Alvarez Neumáticos case [Data: Reports (274)].
+
+### Conclusion
+The provided data does not contain records of a "Título Ejecutivo N° 1322022" nor details about a readjusted demand amount following the withdrawal of such a title. The available information focuses on **Título Ejecutivo N° 1.322.008** (Gross Income Tax), **Juicio de Apremio N° 1476706** (approx. $410,652.44 debt), and **Título Ejecutivo N° 1,373,56** ($913,788.20 Real Estate Tax). If the question refers to **Título Ejecutivo N° 1.322.008**, the reports do not specify a readjusted amount after a withdrawal, but rather describe it as the instrument for initiating collection.
+
+---
+### 16. ¿Qué juez dictó la sentencia de primera instancia en el caso de Goldberg Martín Damián y en qué juzgado?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `34391ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+La sentencia de primera instancia en el caso de Martín Damián Goldberg fue dictada por el **Juzgado en lo Contencioso Administrativo Nº 3**, ubicado en el Departamento Judicial de La Plata [Data: Reports (173)].
+
+Respecto a la identificación del juez específico, los registros indican que este juzgado es presidido por las juezas Analía Elsa Galkin y Francisco José Terrier [Data: Reports (389)]. Sin embargo, la resolución del caso Goldberg no atribuye la sentencia directamente a un magistrado individual, sino al cuerpo judicial del Juzgado en lo Contencioso Administrativo Nº 3 en su conjunto [Data: Reports (173]). Por lo tanto, aunque se conoce la composición del tribunal, el expediente específico no especifica cuál de los jueces emitió individualmente el fallo.
+
+La resolución emitida por este juzgado actuó como la instancia judicial decisiva en este expediente, rechazando las excepciones presentadas por el demandado y confirmando la deuda tributaria [Data: Reports (173)].
+
+---
+### 17. Resume cuáles fueron los fundamentos del contribuyente UOLE S.A. para plantear la prescripción de la deuda.
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `70936ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+### Fundamentos Jurídicos y Doctrinales de la Defensa de UOLE S.A.
+
+La defensa de UOLE S.A. contra la exigibilidad de deudas tributarias se fundamentó primordialmente en la prescripción de la deuda, argumentando que los plazos legales para la acción fiscal habían expirado antes de que la autoridad tributaria iniciara los procedimientos correspondientes. El núcleo de esta estrategia legal residió en la invocación de la doctrina establecida en el caso **"Filcrosa"** por la Suprema Corte de Justicia de la Nación (CSJN). Este precedente judicial sostiene que las normas provinciales que regulan los períodos de prescripción fiscal son inválidas si contrarían el Código Civil, estableciendo así la supremacía de las normas civiles de jerarquía superior sobre la legislación fiscal provincial en materia de prescripción [Data: Reports (9, 116, 104, 105, 330)].
+
+UOLE S.A. argumentó que los artículos del Código Fiscal de la Provincia de Buenos Aires, específicamente los artículos 157 al 161, que regulan la prescripción, eran inconstitucionales en la medida en que contradecían las normas civiles. La empresa sostuvo que el marco constitucional, particularmente los artículos 31 y 75 de la Constitución Nacional, otorga al gobierno nacional la potestad exclusiva para regular obligaciones civiles y comerciales, limitando así la facultad de las provincias para establecer plazos de prescripción diferentes o contrarios a los civiles [Data: Reports (9, 104)]. En esta línea, se invocó el dictamen de Laura Monti, Procuradora General de la Nación, quien emitió una opinión legal sobre la competencia jurisdiccional, clarificando la división de autoridad entre jurisdicciones provinciales y nacionales y respaldando la aplicación de los principios civiles en este ámbito [Data: Reports (105)].
+
+### Aplicación Temporal y Procedimental
+
+En términos cronológicos, UOLE S.A. planteó que las obligaciones tributarias en disputa remontaban a periodos impositivos anteriores, específicamente al año 2009 y el año 2010. La empresa argumentó que el plazo de prescripción para los impuestos correspondientes al período de octubre a diciembre de 2009, así como para el año fiscal 2010, había expirado legalmente [Data: Reports (333, 385, 105, 107)].
+
+La defensa se activó procesalmente mediante la "Excepción de Prescripción" en el contexto de un procedimiento de cobro conocido como *apremio*. UOLE S.A. impugnó tanto el Procedimiento Determinativo Sumario iniciado por la Autoridad de Aplicación Tributaria mediante la Disposición 1060/2015, alegando que su inicio el 10 de abril de 2015 fue tardío, como la Disposición Determinativa y Sancionatoria N° 4993/15, notificada el 21 de octubre de 2015 [Data: Reports (107, 333)]. La tesis central fue que el derecho del Estado a cobrar los impuestos había caducado debido al paso del tiempo, equilibrando los intereses fiscales con la seguridad jurídica del contribuyente, principio reafirmado por las sentencias de la Corte Suprema [Data: Reports (330, 105)].
+
+### Resultado Judicial y Precedentes Adicionales
+
+La estrategia legal de UOLE S.A., representada por el Dr. Enrique Luis Condorelli, resultó exitosa. Aunque la autoridad impositiva rechazó inicialmente los argumentos citando el Código Fiscal, los tribunales competentes fallaron a favor de la empresa. El Juzgado Contencioso Administrativo Nro. 02, con la intervención de los jueces Gallo Quintian Federico y Gradin Marcelo Mauro, registró electrónicamente en General San Martín una sentencia que declaró prescrito el período fiscal del año 2010, impidiendo legalmente el cobro de deudas de ese periodo [Data: Reports (385, 107)]. Posteriormente, la Cámara de Apelaciones emitió sentencias favorables a UOLE S.A., incluyendo decisiones en febrero y marzo de 2026 que revocaron resoluciones anteriores y confirmaron la prescripción, anulando efectivamente ciertos reclamos tributarios contra la empresa [Data: Reports (385, 18, 333)].
+
+Además de la doctrina "Filcrosa", UOLE S.A. amplió su marco jurisprudencial citando otros precedentes para fortalecer su posición. Se hizo referencia al caso **"Casa Casmma"** en los argumentos sobre competencia legislativa y la interpretación de las leyes de prescripción, proporcionando un contexto jurídico más amplio [Data: Reports (105)]. También se utilizó la aplicación analógica de los artículos 2.532 y 2.560 del Código Civil y Comercial (CCYC), los cuales, aunque reconocen cierta competencia provincial, establecen normas genéricas que fueron usadas para cuestionar la validez temporal de la acción fiscal [Data: Reports (379)].
+
+### Contexto Normativo y Tensión Legal
+
+El caso de UOLE S.A. ilustra la tensión legal existente entre la administración tributaria provincial (como el Fisco y la Fiscalía de Estado) y los contribuyentes, donde se utilizan precedentes federales para desafiar la exigibilidad de deudas basándose en la prescripción civil [Data: Reports (9)]. Este conflicto refleja debates más amplios en la provincia sobre la constitucionalidad de ciertos artículos del Código Fiscal y la interpretación de los plazos de prescripción, similar a otros casos del Fisco y ARBA [Data: Reports (87, 74, 205)].
+
+Aunque no directamente aplicado a UOLE S.A., el contexto legal general menciona otros precedentes relevantes en la materia. Por ejemplo, el precedente **"Alpha Shipping"** de la CSJN declaró inconstitucionales ciertos artículos de los Códigos Fiscales provinciales respecto a períodos de limitación de cinco años, interpretando la interacción entre el Código Penal y los Códigos Fiscales [Data: Reports (10)]. Asimismo, el Superior Tribunal de Justicia de Buenos Aires (SCBA) ha declarado inconstitucionales los artículos 21 y 24 del Código Fiscal, afectando la responsabilidad tributaria solidaria y los argumentos de prescripción basados en violaciones al debido proceso [Data: Reports (233, 174)]. El precedente **"Volkswagen"** también se menciona como relevante para la intersección entre legislación civil y asuntos tributarios en casos de prescripción [Data: Reports (106, 326)].
+
+En resumen, UOLE S.A. logró invalidar la exigencia de los tributos al demostrar que la autoridad tributaria actuó fuera de los plazos legales establecidos por el Código Civil, cuya aplicación fue reforzada por la doctrina de la CSJN en el caso Filcrosa, superando así las normas provinciales que intentaban extender o alterar dichos plazos [Data: Reports (9, 107, 333)].
+
+---
+### 18. Explica brevemente por qué el Juzgado de Primera Instancia resolvió de forma adversa al Fisco en el caso de González Moran Matías Javier.
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `55950ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+El análisis de los datos disponibles revela una contradicción significativa respecto a la premisa de que el Juzgado de Primera Instancia resolvió de forma adversa al Fisco en el caso específico de González Moran Matías Javier. De hecho, la información indica que no existe un registro de una resolución judicial de este tribunal contra el Fisco en este particular caso [Data: Reports (136, 430, 431, 42, 393, +more)].
+
+A continuación, se detallan los puntos clave basados en los reportes proporcionados:
+
+**Ausencia de resolución judicial adversa en el caso de González Moran**
+Los datos sugieren que la resolución que favoreció al contribuyente Matías Javier González Moran no emana de un Juzgado de Primera Instancia, sino de una resolución administrativa. Específicamente, la Resolución N° 594/2026 de la ARBA (Agencia de Recaudación de la Provincia de Buenos Aires) otorgó una parcialidad en la retirada de la demanda y determinó exenciones tributarias para períodos específicos, lo cual favoreció al contribuyente frente al Fisco [Data: Reports (230)]. El caso involucra una acción de ejecución judicial ('Juicio de Apremio') iniciada por el Fisco por deudas tributarias vehiculares asociadas al vehículo AE7750Y [Data: Reports (230)].
+
+**Confusión con otro caso: Inidoneidad del Título Ejecutivo**
+Existe otro caso detallado en los datos donde un Juzgado de Primera Instancia (específicamente el Juzgado Contencioso Administrativo N° 1 en Lomas de Zamora, presidido por la jueza Gladys Beatriz Marti) sí resolvió de forma adversa al Fisco de la Provincia de Buenos Aires. En esta instancia, se declaró que el Título Ejecutivo N° 1.349.640 era inidóneo e inelizable para la ejecución legal [Data: Reports (45)]. Esta decisión se basó en la existencia de errores formales y extrínsecos significativos en el título ejecutivo, particularmente en la liquidación del monto de la deuda y otros requisitos formales, lo que lo hacía legalmente insuficiente según los estándares estrictos requeridos por el Código Procesal Civil y Comercial (CPCC) [Data: Reports (45)]. Sin embargo, este caso no se identifica explícitamente en los datos como el de González Moran Matías Javier, y la resolución mencionada para González Moran es administrativa (ARBA), no judicial de primera instancia por inidoneidad de título.
+
+**Contexto general de resoluciones adversas al Fisco**
+En un contexto más amplio, los datos indican que las acciones de ejecución del Fisco Provincial pueden ser rechazadas debido a errores procedimentales, como errores en el título ejecutivo o la prescripción de la acción, como ocurrió en un 'Proceso de Apremio' invalidado por estas razones [Data: Reports (136)]. Además, los tribunales han fallado contra el Fisco cuando los impuestos se consideran inconstitucionales. Por ejemplo, en el caso de M Y S Desarrollos Inmobiliarios SRL, el 'Impuesto Inmobiliario Complementario' fue declarado inválido por violar la supremacía constitucional nacional y las leyes de coparticipación federal, al replicar impuestos nacionales [Data: Reports (42)].
+
+En conclusión, aunque el Fisco tuvo una resolución adversa en un caso judicial debido a la inidoneidad de un título ejecutivo [Data: Reports (45)], y el Fisco tuvo una resolución adversa en el caso de González Moran debido a una resolución administrativa de ARBA [Data: Reports (230)], no hay evidencia en los datos de que el Juzgado de Primera Instancia haya resuelto adversamente al Fisco en el caso específico de González Moran Matías Javier por los motivos de inidoneidad de título descritos en el otro caso. La resolución favorable a González Moran fue administrativa [Data: Reports (230)].
+
+---
+### 19. Compara los argumentos de prescripción de Frigorífico de la Costa S.A. y UOLE S.A. ¿Qué períodos específicos reclama cada uno como prescriptos?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `99549ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+# Comparativa de Argumentos de Prescripción: Frigorífico de la Costa S.A. vs. UOLE S.A.
+
+La información disponible permite identificar diferencias claras en los períodos fiscales impugnados y los argumentos legales utilizados por UOLE S.A., mientras que para Frigorífico de la Costa S.A. el contexto se centra en la ejecución de deudas y la aplicabilidad de normas civiles, pero sin detallar explícitamente los períodos específicos que la empresa reclama como prescriptos en defensa propia.
+
+## UOLE S.A.: Prescripción del Período 2010 y Defensa basada en 'Filcrosa'
+
+UOLE S.A. está implicada en disputas fiscales significativas ante el Juzgado Contencioso Administrativo Nro. 02. La empresa alega la **excepción de prescripción** contra deudas de impuestos correspondientes a los períodos de **octubre de 2009 a diciembre de 2009** y el **ejercicio fiscal 2010** [Data: Reports (9, 26, 105)].
+
+El argumento central de UOLE S.A. se basa en la doctrina **'Filcrosa'**, establecida por la Corte Suprema de Justicia de la Nación. Esta doctrina sostiene que los plazos de prescripción establecidos en los Códigos Fiscales provinciales son inválidos si entran en conflicto con el Código Civil, al considerarse normas de derecho público que deben ceder ante la legislación civil nacional en materia de prescripción [Data: Reports (5, 11, 24, 105, 330)]. UOLE S.A. invoca este precedente para argumentar que el plazo de prescripción ha expirado para los impuestos de finales de 2009 y 2010, extinguiendo así la deuda fiscal por el paso del tiempo [Data: Reports (105, 330)].
+
+Como resultado de esta defensa, la Cámara de Apelaciones declaró prescripto el período fiscal 2010 mediante fallos fechados el **10 de febrero de 2026** y el **12 de marzo de 2026**. Esto llevó a la revocación parcial de sentencias anteriores y al ajuste de costas judiciales, beneficiando a la empresa y a CREAURBAN S.A., otra parte implicada [Data: Reports (1, 17, 23, 107)].
+
+## Frigorífico de la Costa S.A.: Ejecución Fiscal y Aplicabilidad del Código Civil
+
+Frigorífico de la Costa S.A. (también referida en algunos contextos como Alvarez Neumaticos S.A.) es parte de acciones ejecutivas contra el Fisco de la Provincia de Buenos Aires, específicamente el caso **P-13974-BB1E** y el litigio fiscal **P-12582-MP2E** [Data: Reports (13, 19, 89, 122)]. Las deudas subyacentes corresponden a impuestos al Ingreso Bruto por los períodos comprendidos entre el **1 de enero de 2015 y octubre de 2016**, así como otros períodos como 2012-2013 y liquidaciones específicas (No. 1.255.831 y No. 1.226.429) [Data: Reports (7, 10, 27, 347)].
+
+A diferencia de UOLE S.A., los datos disponibles **no especifican qué períodos exactos reclama Frigorífico de la Costa S.A. como prescriptos** en sus defensas [Data: Reports (1, 5, 10, 19, 24, 29)]. Sin embargo, se identifican los siguientes aspectos relevantes sobre su postura legal y el entorno procesal:
+
+1.  **Aplicación del Código Civil:** La empresa y los precedentes citados (como *PECAUT* y *CERELLA*) se refieren a los artículos del Código Civil (específicamente los artículos **3956** y **4027**) para determinar cuándo las obligaciones se volvieron exigibles y cuándo comenzó a correr el plazo de prescripción [Data: Reports (7, 33)]. Se argumenta que el Código Civil suprime las leyes fiscales provinciales en cuanto a la interrupción de la prescripción, iniciándose el cómputo desde la fecha del título de la obligación [Data: Reports (33)].
+2.  **Defensas Rechazadas y Actuaciones Interruptivas:** En la causa P-13974-BB1E, la defensa por prescripción fue rechazada por la Cámara de Apelaciones [Data: Reports (13)]. Un elemento clave fue la consideración de actos interruptivos. Por ejemplo, la Disposición Delegada N° 5289 del Ministerio de Economía (SEFSC), emitida el 10 de diciembre de 2014, que determinó la deuda y aplicó penalidades, fue considerada un acto que interrumpía la prescripción, reiniciando el plazo para la recuperación de la deuda [Data: Reports (13)].
+3.  **Interrupción por Infracciones Nuevas:** Se menciona que la omisión de pagar impuestos a cuenta en junio de 2009 (Período 06 de 2009) generó una nueva infracción que, según el Artículo 160 del Código Fiscal, interrumpió la prescripción de sanciones previas, manteniendo las deudas exigibles [Data: Reports (13)]. *Nota: Aunque esta referencia al año 2009 podría parecer conexa a los casos de UOLE, en el contexto de Frigorífico, se vincula a la doctrina general de interrupción aplicada en los litigios provinciales.*
+4.  **Declaración de Mora:** Frigorífico de la Costa S.A. fue sujeto de la Resolución Delegada SEAJ N° 017/2021, que estableció su estado de mora y suspendió los términos de prescripción, y la Disposición N° 367/24 que confirmó penalidades [Data: Reports (6)].
+
+## Conclusión de la Comparativa
+
+*   **UOLE S.A.** tiene un caso claro de éxito en la defensa de la prescripción para los períodos **2009-2010**, basándose en la supremacía del Código Civil sobre la ley fiscal provincial (doctrina *Filcrosa*).
+*   **Frigorífico de la Costa S.A.** enfrenta deudas de los períodos **2015-2016** (y anteriores), y aunque utiliza argumentos basados en el Código Civil para determinar la exigibilidad, **los datos no detallan los períodos específicos que la empresa alega estar prescriptos**. Sus defensas parecen haber sido más complejas debido a la presencia de actos administrativos interruptivos (como determinaciones de deuda y resoluciones de mora) que reiniciaron o suspendieron los plazos de prescripción, lo que llevó al rechazo de sus excepciones en instancias anteriores.
+
+En resumen, mientras UOLE S.A. logró invalidar reclamos de deudas antiguas (2009-2010) mediante la doctrina *Filcrosa*, Frigorífico de la Costa S.A. litiga sobre deudas más recientes (2015-2016) donde la administración fiscal ha intervenido activamente para interrumpir la prescripción, y no se dispone de información específica sobre los plazos exactos que la empresa considera extinguidos en su defensa [Data: Reports (1, 5, 7, 10, 13, 19, 23, 24, 26, 27, 29, 33, 105, 330, 347)].
+
+---
+### 20. Compara los fallos de Primera Instancia y de Cámara en el caso Alvarez Neumáticos S.A. ¿Se mantuvo la misma postura respecto a la responsabilidad de los directores/socios?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `91923ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+El análisis de los datos disponibles revela que **no existe información suficiente** para comparar detalladamente los fallos de Primera Instancia y de Cámara en el caso específico de *Alvarez Neumáticos S.A.* respecto a la postura sobre la responsabilidad de los directores o socios. Si bien se conoce el recorrido procesal del caso, los registros no detallan la divergencia o convergencia doctrinal específica entre estos dos niveles judiciales sobre la teoría de la responsabilidad civil de los administradores.
+
+A continuación, se detalla lo que sí se establece en los informes disponibles sobre el caso, el contexto legal general y las limitaciones de la información proporcionada.
+
+### Antecedentes del Caso Alvarez Neumáticos S.A.
+
+El caso legal principal es un "Apremio Provincial" iniciado por el Fisco de la Provincia de Buenos Aires contra *Alvarez Neumáticos S.A.* (también referida en algunos documentos como *FRIGORIFICO DE LA COSTA S.A.* o *Alvar Neumaticos S.A.*) para cobrar deudas fiscales no pagadas, específicamente el Impuesto sobre los Ingresos Brutos y las multas asociadas [Data: Reports (89, 126, 12)].
+
+Los individuos **Nestor Abel Alvarez** y **Maria del Rosario Dumrauf**, asociados a la empresa, fueron citados como demandados y ordenados a pagar la deuda fiscal y las multas correspondientes, estableciéndose así su responsabilidad personal en el marco de este juicio ejecutivo [Data: Reports (89)].
+
+El caso transitó por el **Juzgado de Primera Instancia en Bahía Blanca** y posteriormente fue apelado ante la **Cámara de Apelación en lo Contencioso Administrativo en Mar del Plata** [Data: Reports (89, 394)]. La Cámara de Apelación, conformada por jueces como el Doctor Mora y Diego Fernando Ucin, emitió fallos que respaldaron las pretensiones de la autoridad fiscal, rechazando las defensas procesales presentadas por los demandados [Data: Reports (89)]. Entre las excepciones rechazadas se encuentra la de litispendencia, basándose en precedentes que determinaron que el objeto del caso actual no era idéntico al de otros litigios paralelos [Data: Reports (89)].
+
+### Limitaciones en la Comparación Judicial
+
+Varios análisis indican explícitamente que los datos disponibles **no contienen información comparativa** entre los fallos de Primera Instancia y de Cámara para este caso específico [Data: Reports (6, 21, 26)]. Aunque se menciona que existe una comunidad académica y legal que discute la responsabilidad de administradores bajo la Ley 19.550 (Código Comercial), los datos específicos del caso *Alvarez Neumáticos S.A.* no detallan si la postura sobre la responsabilidad de socios/directores cambió o se mantuvo entre el juicio oral y la apelación [Data: Reports (189, 89)].
+
+Por el contrario, la información disponible confirma principalmente el mantenimiento de la postura de ejecución de la deuda y el rechazo de defensas procesales, sin entrar en el análisis doctrinal de la responsabilidad civil de los directores en sí misma dentro del contexto de esta comparación judicial [Data: Reports (89, 189)].
+
+### Contexto Legal y Constitucional: La Responsabilidad de los Directores
+
+Aunque no se puede comparar los fallos específicos de *Alvarez Neumáticos S.A.*, el caso se sitúa en medio de un conflicto legal central y amplio en Argentina respecto a la responsabilidad de los administradores corporativos.
+
+**1. Conflicto entre Ley Nacional y Código Fiscal Provincial**
+Existe una tensión jurídica significativa entre la **Ley de Sociedades Comerciales (Ley 19.550)** y el **Código Fiscal Provincial de la Provincia de Buenos Aires**.
+*   La Ley Nacional (Artículos 59 y 274) exige la **prueba de dolo o culpa** para establecer la responsabilidad de los administradores [Data: Reports (131, 364)].
+*   El Código Fiscal Provincial ha sido criticado por imponer un régimen de **responsabilidad solidaria** que presume la responsabilidad e invierte la carga de la prueba, lo cual entra en conflicto con el derecho comercial nacional [Data: Reports (131)].
+
+**2. Postura de los Tribunales y Precedentes Constitucionales**
+El caso *Alvarez* (emitido por la CCAMP) es un precedente legal significativo que cita explícitamente el **Artículo 18 de la Constitución Nacional**, vinculándose con el debido proceso y los derechos del administrado [Data: Reports (131)].
+
+El **Juez Dr. Torres** argumentó en este contexto que el régimen tributario provincial es cuestionable porque viola la supremacía federal y los derechos de debido proceso al imponer regímenes de responsabilidad irrazonables a los directores de las empresas, contradiciendo las leyes comerciales nacionales. Invocó los Artículos 18, 28 y 75 inc. 12 de la Constitución Nacional para sostener esta vista [Data: Reports (131, 366)].
+
+Sin embargo, la postura judicial no es uniforme:
+*   La **Suprema Corte de Justicia de la Provincia de Buenos Aires** ha establecido precedentes que definen el alcance de la responsabilidad personal de los representantes legales y administradores, aclarando aspectos procesales y sustantivos de la recaudación fiscal [Data: Reports (203)].
+*   La **Cámara de Apelación** mantiene una línea jurisprudencial consistente en casos tributarios y ha emitido fallos que declaran inconstitucionales ciertas disposiciones del Código Fiscal, siguiendo criterios de la Corte Suprema Federal [Data: Reports (337)].
+*   En otros casos, como *CREAURBAN S.A.*, los demandados lograron argumentar con éxito que las normas fiscales provinciales sobre la responsabilidad de los directores pueden violar el sistema federal, citando exenciones para directores que prueban que actuaron para cumplir con las obligaciones [Data: Reports (418)].
+*   Precedentes más amplios como *Filcrosa* y *Volkswagen* enfatizan que las regulaciones fiscales provinciales deben alinearse con el Código Civil, invalidando a menudo intentos provinciales de extender la responsabilidad o alterar períodos de prescripción arbitrariamente [Data: Reports (326, 106)].
+
+**3. Variabilidad de Resultados**
+Los resultados en casos de responsabilidad de directores pueden variar según las apelaciones. Por ejemplo, en el caso de *Arquimex S.A.C.E.I.*, el director Dougald MacLeod Smid fue inicialmente declarado responsable solidario por multas tributarias, pero fue posteriormente exonerado mediante una apelación exitosa (Disposición Delegada N° 110-167/19), demostrando que las posturas de responsabilidad pueden cambiar tras una revisión [Data: Reports (377)].
+
+### Conclusión
+
+En resumen, aunque se sabe que la Cámara de Apelación respaldó a la autoridad fiscal en el caso de *Alvarez Neumáticos S.A.* y rechazó las defensas de los demandados (incluyendo Nestor Abel Alvarez y Maria del Rosario Dumrauf), **no hay datos suficientes para afirmar si la postura sobre la responsabilidad civil de los directores se mantuvo idéntica o cambió respecto al fallo de Primera Instancia**. El registro disponible se centra en el procedimiento de apremio y el rechazo de excepciones procesales, mientras que la discusión constitucional y legal sobre la validez de la responsabilidad solidaria sin prueba de culpa es un tema de fondo amplio que afecta el caso, pero cuya evolución específica entre los dos niveles de jurisdicción en esta causa particular no está detallada en los informes proporcionados [Data: Reports (89, 131, 6, 21)].
+
+---
+### 21. ¿Qué es el fallo 'Filcrosa' en el contexto de estas sentencias y cómo lo utilizan los contribuyentes frente a las pretensiones de ARBA?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `106404ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+### El Fallo 'Filcrosa': Definición y Jerarquía Normativa
+
+El fallo **'Filcrosa'** (Fallos 326:3899) es un precedente jurídico fundamental establecido por la Suprema Corte de Justicia de la Nación (CSJN) en Argentina. Su importancia radica en la definición de los plazos de prescripción para las obligaciones tributarias, estableciendo la supremacía del **Código Civil Nacional** sobre las ordenanzas o códigos fiscales provinciales en esta materia [Data: Reports (11, 138, 9, 116, 104, +more)]. La doctrina dictamina que las leyes nacionales de civilidad gobiernan la extinción de obligaciones por prescripción, lo que limita la capacidad de las provincias para imponer reglas diferentes o contradictorias a través de sus legislaciones locales [Data: Reports (118, 344, 326, 106)].
+
+Este precedente refuerza la jerarquía de las normas, asegurando que las autoridades provinciales no puedan alterar unilateralmente los plazos de prescripción de manera que violen los estándares superiores del derecho civil nacional. En consecuencia, las normas provinciales que intentan establecer períodos de prescripción que discrepan del Código Civil son consideradas nulas o inconstitucionales bajo esta doctrina [Data: Reports (326, 106, 345, 356, 33, 84, +more)].
+
+### Utilización Estratégica por los Contribuyentes frente a ARBA
+
+En el contexto de las disputas con la Agencia de Recaudación de Buenos Aires (**ARBA**) y el Fisco de la Provincia de Buenos Aires, los contribuyentes invocan la doctrina 'Filcrosa' como una defensa estratégica principal. Su uso se centra en dos ejes principales:
+
+1.  **Excepción de Prescripción:** Los contribuyentes alegan que las deudas fiscales reclamadas por la autoridad han caducado de acuerdo con los plazos establecidos en el Código Civil, los cuales son más favorables o estrictos que los previstos en el Código Fiscal provincial. Al invocar 'Filcrosa', argumentan que el derecho del Estado a cobrar impuestos ha expirado, lo que debería extingir la obligación de pago y hacer que la pretensión fiscal sea incochable legalmente [Data: Reports (344, 330, 105, 11, 26, +more)].
+2.  **Impugnación de Normas Provinciales:** Se utiliza para desafiar la validez de artículos específicos del Código Fiscal de la Provincia de Buenos Aires (como los artículos 157 a 161) que pretenden imponer plazos distintos a los civiles. Los contribuyentes sostienen que estas normas provinciales son inválidas en la medida en que contravienen el marco civil nacional [Data: Reports (9, 104, 326, 106, 206)].
+
+### Casos Concretos y Aplicación Judicial
+
+La aplicación de esta doctrina se evidencia en diversos litigios donde empresas han utilizado 'Filcrosa' para negar la validez de deudas o multas:
+
+*   **UOLE S.A.:** Esta empresa utilizó el precedente para defenderse de juicios de apremio por impuestos sobre la renta bruta (IIBB) y embarcaciones recreativas de años anteriores (como 2009). Argumentó que el plazo para cobrar dichas deudas había expirado según las reglas del Código Civil, logrando en algunos casos el rechazo de las pretensiones fiscales [Data: Reports (9, 107, 332, 330, 105)].
+*   **Cundir S.A. y otras entidades:** Corporaciones como Cundir S.A. han invocado la doctrina para argumentar que las obligaciones tributarias reclamadas por el Fisco provincial están prescritas, buscando evitar la responsabilidad financiera y la ejecución de activos [Data: Reports (356, 123, 12)].
+*   **Cooperativas y otros actores:** Incluso en casos que involucran entidades cooperativas, como *Cooperativa Provision Almaceneros Minoristas*, la Suprema Corte de Justicia de la Provincia de Buenos Aires (SCBA) ha aplicado la doctrina 'Filcrosa' para interpretar normas fiscales, demostrando su uso práctico más allá de las grandes corporaciones [Data: Reports (206)].
+
+### Debate Jurisprudencial y Tensiones Legales
+
+La aplicación de 'Filcrosa' no está exenta de controversias y genera una tensión constante entre la autonomía provincial y el marco legal nacional:
+
+*   **Posición de ARBA:** La autoridad fiscal a menudo rechaza los reclamos de prescripción basados en 'Filcrosa', argumentando que las provincias tienen autonomía para regular sus propios plazos de prescripción (citando, por ejemplo, el Artículo 2532 del Código Civil y Comercial) o que el fallo ha sido superado por nuevas leyes, como el Artículo 4023 del Código Civil y Comercial, que establece un período de diez años [Data: Reports (379, 107, 87, 292)]. ARBA intenta apartarse de los principios de 'Filcrosa' para mantener la exigibilidad de deudas antiguas mediante la aplicación estricta del Código Fiscal provincial [Data: Reports (326, 261, 356)].
+*   **Alineación de los Tribunales:** A pesar de la resistencia fiscal, la SCBA ha alineado su doctrina con 'Filcrosa' en múltiples ocasiones, estableciendo precedentes vinculantes para los tribunales inferiores. Esto crea un estándar jurídico uniforme que los contribuyentes pueden invocar [Data: Reports (33, 53, 206, 327)]. En casos como *Fisco de la Provincia de Buenos Aires c/ Fadra SRL*, la SCBA aplicó la doctrina para rechazar recursos extraordinarios, validando las decisiones de tribunales inferiores basadas en este criterio [Data: Reports (412, 181)].
+*   **Interrupción de la Prescripción:** Existe un debate activo sobre cómo se interrumpe el plazo de prescripción. Los contribuyentes argumentan que si las acciones del Fisco (como intimaciones administrativas) no cumplen con la estricta definición de "demanda" o acto interruptivo según el Código Civil (Artículo 3986) y la doctrina 'Filcrosa', la deuda debe considerarse prescrita [Data: Reports (204, 383, 304)].
+
+### Conclusión
+
+En resumen, el fallo 'Filcrosa' es una herramienta jurídica poderosa para los contribuyentes frente a las pretensiones de ARBA. Les permite argumentar que las deudas fiscales antiguas están prescritas bajo el Código Civil Nacional, invalidando así las normas provinciales que intentan extender esos plazos. Aunque la autoridad fiscal disputó su vigencia y aplicabilidad, los tribunales superiores, tanto nacionales como provinciales, han reiterado su importancia para garantizar la seguridad jurídica y limitar el poder de cobro indefinido del fisco provincial [Data: Reports (345, 356, 33, 84, 11, 138, 9, 116, 104, +more)].
+
+---
+### 22. Identifica al menos dos contribuyentes en los cuales el Fisco (ARBA) haya realizado un desistimiento parcial, reliquidación de deuda o readecuación del monto demandado debido a errores o exenciones.
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `120028ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 23. Agrupa y menciona qué contribuyentes de los expedientes analizados corresponden al impuesto a los Ingresos Brutos (IIBB) y cuáles al impuesto Inmobiliario.
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `120024ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 24. ¿Qué resolución tomó el Juzgado Contencioso Administrativo respecto a la habilitación comercial y pago de tasas de seguridad e higiene de la firma Cervecería Quilmes en 2025?
+**Target / Modo:** `MS GraphRAG / global`  
+**Latencia:** `44190ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+**Respuesta:**
+I am sorry but I am unable to answer this question given the provided data.
+
+---
+### 25. ¿Cuál es el monto total reclamado y el número de expediente administrativo en el juicio de apremio contra UOLE S.A.?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120054ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 26. ¿Qué dominio automotor y qué períodos tributarios están involucrados en el caso de González Moran Matías Javier?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120052ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 27. En el caso Alvarez Neumáticos S.A., ¿a qué monto se readecuó la demanda de apremio tras desistir del Título Ejecutivo N° 1322022?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120052ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 28. ¿Qué juez dictó la sentencia de primera instancia en el caso de Goldberg Martín Damián y en qué juzgado?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120027ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 29. Resume cuáles fueron los fundamentos del contribuyente UOLE S.A. para plantear la prescripción de la deuda.
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120052ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 30. Explica brevemente por qué el Juzgado de Primera Instancia resolvió de forma adversa al Fisco en el caso de González Moran Matías Javier.
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120026ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 31. Compara los argumentos de prescripción de Frigorífico de la Costa S.A. y UOLE S.A. ¿Qué períodos específicos reclama cada uno como prescriptos?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120022ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 32. Compara los fallos de Primera Instancia y de Cámara en el caso Alvarez Neumáticos S.A. ¿Se mantuvo la misma postura respecto a la responsabilidad de los directores/socios?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120026ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 33. ¿Qué es el fallo 'Filcrosa' en el contexto de estas sentencias y cómo lo utilizan los contribuyentes frente a las pretensiones de ARBA?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120027ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 34. Identifica al menos dos contribuyentes en los cuales el Fisco (ARBA) haya realizado un desistimiento parcial, reliquidación de deuda o readecuación del monto demandado debido a errores o exenciones.
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120031ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 35. Agrupa y menciona qué contribuyentes de los expedientes analizados corresponden al impuesto a los Ingresos Brutos (IIBB) y cuáles al impuesto Inmobiliario.
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120022ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---
+### 36. ¿Qué resolución tomó el Juzgado Contencioso Administrativo respecto a la habilitación comercial y pago de tasas de seguridad e higiene de la firma Cervecería Quilmes en 2025?
+**Target / Modo:** `MS GraphRAG / drift`  
+**Latencia:** `120029ms` | **Faithfulness:** `N/A` | **Relevancy:** `N/A`
+
+> [!CAUTION]
+> **Error:** HTTP 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+
+---

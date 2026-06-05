@@ -2,18 +2,62 @@
 Metricas — wrapper sobre RAGAS para evaluar respuestas.
 """
 
+import os
+import re
+import math
+import typing as t
 import yaml
 from pathlib import Path
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
+from ragas.embeddings.base import BaseRagasEmbeddings
 from datasets import Dataset
 from langfuse import Langfuse
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
+from ragas.llms import LangchainLLMWrapper
+from openai import OpenAI
 
 CONFIG_PATH = Path(__file__).resolve().parent.parent / "config.yaml"
 
 _llm = None
 _embeddings = None
+
+
+def _expand_env(value):
+    """Expande ${VAR} o $VAR con variables de entorno."""
+    if not isinstance(value, str):
+        return value
+    pattern = re.compile(r'\$\{(\w+)\}|\$(\w+)')
+    def replacer(match):
+        var = match.group(1) or match.group(2)
+        return os.environ.get(var, match.group(0))
+    return pattern.sub(replacer, value)
+
+
+class _DirectEmbeddings(BaseRagasEmbeddings):
+    """Embeddings RAGAS-nativos que llaman directamente al API OpenAI-compatible.
+    Evita el doble-wrap de LangchainEmbeddingsWrapper que causa mismatch de dimensiones.
+    """
+
+    def __init__(self, model: str, api_key: str, base_url: str):
+        super().__init__()
+        self._client = OpenAI(api_key=api_key, base_url=base_url)
+        self._model = model
+
+    def embed_query(self, text: str) -> t.List[float]:
+        r = self._client.embeddings.create(model=self._model, input=text)
+        return r.data[0].embedding
+
+    def embed_documents(self, texts: t.List[str]) -> t.List[t.List[float]]:
+        r = self._client.embeddings.create(model=self._model, input=texts)
+        return [item.embedding for item in r.data]
+
+    async def aembed_query(self, text: str) -> t.List[float]:
+        return self.embed_query(text)
+
+    async def aembed_documents(self, texts: t.List[str]) -> t.List[t.List[float]]:
+        return self.embed_documents(texts)
+
 
 def _get_evaluator_models():
     global _llm, _embeddings
@@ -22,28 +66,40 @@ def _get_evaluator_models():
             raise FileNotFoundError(f"No se encuentra {CONFIG_PATH}")
         with open(CONFIG_PATH, "r", encoding="utf-8") as f:
             cfg = yaml.safe_load(f)
-        
-        import os
+
         # Cargar LLM
         llm_cfg = cfg.get("evaluator_llm", {})
-        api_key = llm_cfg.get("api_key", "dummy-key")
+        api_key = _expand_env(llm_cfg.get("api_key", "dummy-key"))
         os.environ["OPENAI_API_KEY"] = api_key
-        
-        _llm = ChatOpenAI(
-            model=llm_cfg.get("model"),
+
+        _llm = LangchainLLMWrapper(ChatOpenAI(
+            model=_expand_env(llm_cfg.get("model")),
             api_key=api_key,
-            base_url=llm_cfg.get("api_base"),
+            base_url=_expand_env(llm_cfg.get("api_base")),
             temperature=0.0
-        )
-        
-        # Cargar Embeddings
+        ), bypass_n=True)
+
+        # Cargar Embeddings via cliente directo (evita doble-wrap de langchain)
         embed_cfg = cfg.get("evaluator_embeddings", {})
-        _embeddings = OpenAIEmbeddings(
-            model=embed_cfg.get("model"),
-            api_key=api_key, # RAGAS requiere pasar una key
-            base_url=embed_cfg.get("api_base"),
+        _embeddings = _DirectEmbeddings(
+            model=_expand_env(embed_cfg.get("model")),
+            api_key=_expand_env(embed_cfg.get("api_key", api_key)),
+            base_url=_expand_env(embed_cfg.get("api_base")),
         )
     return _llm, _embeddings
+
+
+def _safe_float(val_list) -> float:
+    if not val_list:
+        return 0.0
+    try:
+        val = val_list[0]
+        f = float(val)
+        if math.isnan(f) or math.isinf(f):
+            return 0.0
+        return f
+    except (ValueError, TypeError, IndexError):
+        return 0.0
 
 
 def evaluar_respuesta_ragas(
@@ -74,11 +130,10 @@ def evaluar_respuesta_ragas(
         })
 
         llm, embeddings = _get_evaluator_models()
-        # Vincular de forma explicita a las metricas para evitar fallbacks
         faithfulness.llm = llm
         answer_relevancy.llm = llm
         answer_relevancy.embeddings = embeddings
-        
+
         result = evaluate(
             dataset,
             metrics=[faithfulness, answer_relevancy],
@@ -87,11 +142,10 @@ def evaluar_respuesta_ragas(
         )
 
         scores = {
-            "faithfulness": float(result["faithfulness"]),
-            "answer_relevancy": float(result["answer_relevancy"]),
+            "faithfulness": _safe_float(result["faithfulness"]),
+            "answer_relevancy": _safe_float(result["answer_relevancy"]),
         }
 
-        # Si tenemos LangFuse, agregamos los scores al trace
         if langfuse_client and trace_id:
             langfuse_client.create_score(
                 trace_id=trace_id,

@@ -4,14 +4,32 @@ langfuse:
   secret_key: "sk-lf-edb2e88f-74dc-421d-bb75-adb9af056567"
 
 # Modelo para evaluacion LLM-as-judge (RAGAS internamente lo necesita)
+# IMPORTANTE: el LLM evaluator debe ser INDEPENDIENTE de los PoCs para evitar sesgo.
+# Los embeddings pueden apuntar a la misma infraestructura (solo miden similitud semantica).
+#
+# --- Configuracion por defecto ---
+# LLM evaluator: DeepSeek (independiente, compatible OpenAI API)
 evaluator_llm:
-  model: "Arba/Qwen-Flash"
+  model: "deepseek-chat"
+  api_base: "https://api.deepseek.com/v1"
+  api_key: "sk-1231f4df77c24351894e2dd55db2e4b0"
+
+# Embeddings: mismo modelo que usan los PoCs (GraphRAG, etc.) via ARBA LLM
+evaluator_embeddings:
+  model: "Arba/Qwen-Embedding"
   api_base: "https://apillm.test.arba.gov.ar"
   api_key: "sk-cf4MDytpGq0Jae2Kz6DvzA"
 
-evaluator_embeddings:
-  model: "Qwen/Qwen3-Embedding-4B"
-  api_base: "http://localhost:8080/v1"
+# --- Alternativas comentadas ---
+# Opcion OpenAI (LLM + embeddings):
+# evaluator_llm:
+#   model: "gpt-4o-mini"
+#   api_base: "https://api.openai.com/v1"
+#   api_key: "${OPENAI_API_KEY}"
+# evaluator_embeddings:
+#   model: "text-embedding-3-small"
+#   api_base: "https://api.openai.com/v1"
+#   api_key: "${OPENAI_API_KEY}"
 
 # Targets: cada PoC que vamos a evaluar
 targets:

@@ -14,11 +14,12 @@ evaluator_llm:
   api_base: "https://api.deepseek.com/v1"
   api_key: "sk-1231f4df77c24351894e2dd55db2e4b0"
 
-# Embeddings: mismo modelo que usan los PoCs (GraphRAG, etc.) via ARBA LLM
+# Embeddings: mismo modelo que usa GraphRAG, via kubectl port-forward directo al vllm.
+# kubectl port-forward -n vllm svc/qwen3-embedding-4b-svc 8080:8000
 evaluator_embeddings:
-  model: "Arba/Qwen-Embedding"
-  api_base: "https://apillm.test.arba.gov.ar"
-  api_key: "sk-cf4MDytpGq0Jae2Kz6DvzA"
+  model: "Qwen/Qwen3-Embedding-4B"
+  api_base: "http://localhost:8080/v1"
+  api_key: "dummy"
 
 # --- Alternativas comentadas ---
 # Opcion OpenAI (LLM + embeddings):

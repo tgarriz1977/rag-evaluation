@@ -1,5 +1,11 @@
 # RAG Evaluation — Benchmark de PoCs con RAGAS + LangFuse
 
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white)
+![RAGAS](https://img.shields.io/badge/RAGAS-Evaluation-FF6B6B?style=flat-square)
+![LangFuse](https://img.shields.io/badge/LangFuse-Observability-2B6CB0?style=flat-square)
+![Kubernetes](https://img.shields.io/badge/K8s-Targets-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
+
 Framework para evaluar y comparar múltiples PoCs RAG (LightRAG, MS GraphRAG, LlamaIndex, LangChain, RAGFlow) sobre los mismos documentos y preguntas, usando métricas estandarizadas via RAGAS y observabilidad via LangFuse.
 
 ## Objetivo
@@ -124,7 +130,7 @@ Responder preguntas como:
 ### Tabla comparativa rápida
 
 | Aspecto | LightRAG | MS GraphRAG | LlamaIndex | LangChain+LangGraph | RAGFlow |
-|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|
 | **Enfoque** | Grafo de conocimiento | Extracción de entidades | Routing de queries | Agentes + pipelines | **RAG engine todo-en-uno** |
 | **WebUI** | ✅ Sí (React) | ❌ No | ❌ No | ❌ No | **✅ Completa** |
 | **Indexación** | Automática | Manual (Job) | Explícita (/reindex) | Explícita (/reindex) | **Automática (DeepDoc)** |
@@ -290,3 +296,7 @@ preguntas:
 - Acceso VPN a los endpoints de los PoCs
 - API key de LangFuse (config.yaml)
 - Los PoCs deployados y accesibles via HTTP
+
+## Autor
+
+Juan Pablo Garriz
